@@ -1,0 +1,35 @@
+{
+  "name": "dashboard",
+  "version": "0.1.0",
+  "description": "A simple Dashboard using Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eightquake/dashboard.git"
+  },
+  "author": "Victor Davidsson",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/Eightquake/dashboard/issues",
+    "email": "kontakt@victordavidsson.se"
+  },
+  "homepage": "https://github.com/Eightquake/dashboard#readme",
+  "devDependencies": {
+    "electron": "^5.0.6"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    }
+  }
+}

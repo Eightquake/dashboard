@@ -1,9 +1,9 @@
 'use strict'
 
-const { app, BrowserWindow } = require('electron')
+/* Require Electron and extract app and BrowserWindow as variables */
+const { app, BrowserWindow } = require("electron");
 
 let win;
-
 function createWindow () {
   win = new BrowserWindow({
     width: 1280,
@@ -16,7 +16,7 @@ function createWindow () {
     }
   })
   win.loadFile('resources/index.html');
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -26,19 +26,21 @@ function createWindow () {
   })
 
   win.once('ready-to-show', () => {
+    /* Wait until everything is ready to show. Just makes it neater. */
     win.show()
   })
 }
 
+/* The scrollbar was making a hassle with the Packery grid, luckily Electron has a feature for a scrollbar that's floating. */
+app.commandLine.appendSwitch('--enable-features', 'OverlayScrollbar')
 app.on('ready', createWindow)
 
-// Quit when all windows are closed.
+/* Quit when all windows are closed. Copied from tutorial, but I think this is needed on macOS? */
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
-
 app.on('activate', () => {
   if (win === null) {
     createWindow()

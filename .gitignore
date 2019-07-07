@@ -1,2 +1,4 @@
 ## There's no need for all of the node-modules in my repo, we can just install these when needed using package.json ##
 node_modules/
+
+settings.json

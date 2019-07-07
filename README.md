@@ -8,3 +8,5 @@ Hopefully this will turn into something usable. If you want to use this yourself
 Have a look at my [Trello board](https://trello.com/b/sCPiCzS1) to see what I am currently working on and what I have planned. Comments are open on the board but you cannot edit it in any other way.
 
 Any questions or comments? Use [kontakt@victordavidsson.se](mailto:kontakt@victordavidsson.se)
+
+Run `npm install` after you have cloned this repo. Everything depends on the basedir being correct for your system.

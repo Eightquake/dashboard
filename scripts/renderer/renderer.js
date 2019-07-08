@@ -2,8 +2,7 @@
 const settings = require("../../settings.json");
 global.__basedir = settings.basedir
 
-let fs = require('fs');
-const schedule = require('node-schedule');
+global.schedule = require('node-schedule');
 
 /* Code that is used to initialize everything, as name implies it should be called when the document is ready */
 const onready = require(global.__basedir + "/scripts/renderer/onready.js");

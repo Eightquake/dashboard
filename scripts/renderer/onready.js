@@ -13,21 +13,20 @@ $.bridget('draggabilly', Draggabilly);
 
 function ready(loaded_details, loaded_plugins) {
   let grid = document.querySelector(".grid");
-  for(var [key, value] of loaded_details) {
+
+  for(let [name, detail] of loaded_details) {
     /* Create a new div to be used as a grid item. */
     let newGriditem = document.createElement("div");
     newGriditem.className = "grid-item";
-    for(pluginName of value.settings.used_plugins) {
+    /* Register the detail to every plugin stated */
+    for(pluginName of detail.settings.used_plugins) {
+      /* Make sure the plugin actually exists and is loaded */
       if(loaded_plugins.has(pluginName)) {
         let plugin = loaded_plugins.get(pluginName);
-        if(plugin.parameter == "string" && plugin.returns == "string") {
-          value.element.innerHTML = plugin.handler(value.element.innerHTML);
-        }
+        /* Every plugin get's the detail in it's entirety, and a reference to the specific grid-item div */
+        plugin.handler(detail, newGriditem);
       }
-
     }
-    /* Add the detail to the griditem, and then add the griditem to the whole grid */
-    newGriditem.appendChild(value.element);
     grid.appendChild(newGriditem);
   }
 

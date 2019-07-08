@@ -29,7 +29,7 @@ function update() {
     .replace(/(%ss)/g, date.getSeconds())
     .replace(/(%DDDD)/g, fullDays[date.getDay()])
     .replace(/(%DD)/g, fullDays[date.getDay()].substring(0, 3))
-    .replace(/(%d)/g, (date.getDay()<9)?"0" + (date.getDay()+1):date.getDay() + 1)
+    .replace(/(%d)/g, (date.getDate()<10)?"0" + date.getDate():date.getDate())
     .replace(/(%MMMM)/g, fullMonths[date.getMonth()])
     .replace(/(%MMMM)/g, fullMonths[date.getMonth()])
     .replace(/(%MMM)/g, fullMonths[date.getMonth()].substring(0, 3))

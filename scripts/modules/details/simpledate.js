@@ -6,8 +6,8 @@ let name = "simpledate";
 module.exports = function(loaded_details) {
   let obj = {
     name: name,
-    style: "font-size: 48px; line-height: 75px; width: 500px; height: 150px; text-align: center;",
-    string: "%DDDD, %MMMM %d \n %yyyy-%MM-%d",
+    style: "font-size: 32px; width: 300px; text-align: center;",
+    string: "%DDDD, %MMMM %d\n%yyyy-%MM-%d",
     settings: {
       used_plugins: ["time"],
       update_interval: "0 0 * * *"

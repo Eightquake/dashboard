@@ -10,6 +10,66 @@ body {
   margin:0;
 }
 
+@keyframes problem-slidein {
+  0% {
+    visibility: visible;
+    transform:translateX(0%);
+  }
+  4% {
+    transform:translateX(2%);
+  }
+  8% {
+    transform:translateX(4%);
+  }
+  92% {
+    transform:translateX(-107%);
+  }
+  96% {
+    transform:translateX(-105%);
+  }
+  100% {
+    visibility: visible;
+    transform:translateX(-103%);
+  }
+}
+
+.problem-popup {
+  position:fixed;
+  top:1%;
+  left:100%;
+  visibility:hidden;
+  min-width:250px;
+  width:20%;
+  min-height:100px;
+  transition:0s;
+}
+
+.problem-animation-run {
+  animation: problem-slidein 0.5s forwards;
+}
+
+.problem-animation-run-reverse {
+  animation: problem-slidein 0.5s reverse forwards;
+}
+
+.problem-error {
+  background:rgba(255, 0, 0, 0.5);
+  border:solid #F00 1px;
+  border-radius:1%;
+}
+
+.problem-warn {
+  background:rgba(255, 255, 0, 0.5);
+  border:solid #FF0 1px;
+  border-radius:1%;
+}
+
+.problem-info {
+  background:rgba(237, 237, 237, 0.5);
+  border:solid #EDEDED 1px;
+  border-radius:1%;
+}
+
 .grid {
   margin:1% 0 0 1%;
   padding:0 0 1% 0;

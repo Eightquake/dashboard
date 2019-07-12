@@ -45,6 +45,9 @@ body {
   .problem-popup li {
     margin-top:10px;
   }
+  .problem-popup li:first-child {
+    margin-top:0px;
+  }
   .problem-popup h3 {
     margin:5px;
     text-align:center;

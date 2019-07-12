@@ -14,7 +14,7 @@ function createPopup(code, problem, string) {
   popup.classList.add(`problem-${code}`, "problem-animation-run");
 
   let exit = document.createElement("i");
-  exit.classList.add("fas", "fa-times-circle", "popup-exit");
+  exit.classList.add("fas", "fa-times", "popup-exit");
   exit.onclick = function() {
     popupList.removeChild(popup);
   }

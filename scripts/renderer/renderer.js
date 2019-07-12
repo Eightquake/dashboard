@@ -8,7 +8,8 @@ global.schedule = require('node-schedule');
 global.problem = require(global.__basedir + "/scripts/modules/renderer/problemHandler.js");
 
 /* Code that is used to initialize everything, as name implies it should be called when the document is ready */
-const onready = require(global.__basedir + "/scripts/renderer/onready.js");
+const fillGrid = require(global.__basedir + "/scripts/renderer/fillGrid.js");
+const initGrid = require(global.__basedir + "/scripts/renderer/initgrid.js");
 /* Plugins are the code that handles strings and does whatever it is supposed to do with it. Plugins will have it's code run over and over.
  * Details register a string or similar to a plugin. A modules code will only be run once.
  */
@@ -24,6 +25,8 @@ window.onload = function() {
   const pluginsPromise = registerplugins(loaded_plugins);
 
   Promise.all([detailsPromise, pluginsPromise]).then(function() {
-    onready(loaded_details, loaded_plugins);
+    fillGrid(loaded_details, loaded_plugins)
+    .then(initGrid());
+
   });
 }

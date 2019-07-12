@@ -13,7 +13,6 @@ $.bridget('draggabilly', Draggabilly);
 
 function ready(loaded_details, loaded_plugins) {
   let grid = document.querySelector(".grid");
-
   for(let [name, detail] of loaded_details) {
     /* Create a new div to be used as a grid item. */
     let newGriditem = document.createElement("div");
@@ -25,6 +24,9 @@ function ready(loaded_details, loaded_plugins) {
         let plugin = loaded_plugins.get(pluginName);
         /* Every plugin get's the detail in it's entirety, and a reference to the specific grid-item div */
         plugin.handler(detail, newGriditem);
+      }
+      else {
+        global.problem.emit("warn", `Detail ${detail.name} needs plugin ${pluginName}, which doesn't exist. Don't expect the detail to show up correctly.`);
       }
     }
     grid.appendChild(newGriditem);

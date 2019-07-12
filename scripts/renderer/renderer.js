@@ -5,7 +5,7 @@ global.__basedir = settings.basedir
 /* Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule job it should use this. */
 global.schedule = require('node-schedule');
 /* Error handler script, that creates the error pop-up to be used. All scripts should use this to communicate with the user */
-global.problem = require(global.__basedir + "/scripts/renderer/problemHandler.js");
+global.problem = require(global.__basedir + "/scripts/modules/renderer/problemHandler.js");
 
 /* Code that is used to initialize everything, as name implies it should be called when the document is ready */
 const onready = require(global.__basedir + "/scripts/renderer/onready.js");

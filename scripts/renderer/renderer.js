@@ -1,11 +1,13 @@
 /* Import the settings.json and add the basedir as a global. */
-const settings = require("../../settings.json");
-global.__basedir = settings.basedir
+const { basedir } = require("../../settings.json");
+global.__basedir = basedir;
 
 /* Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule job it should use this. */
 global.schedule = require('node-schedule');
 /* Error handler script, that creates the error pop-up to be used. All scripts should use this to communicate with the user */
 global.problem = require(global.__basedir + "/scripts/modules/renderer/problemHandler.js");
+
+const settings = require(global.__basedir + "/scripts/renderer/settings.js");
 
 /* Code that is used to initialize everything, as name implies it should be called when the document is ready */
 const fillGrid = require(global.__basedir + "/scripts/renderer/fillGrid.js");
@@ -25,8 +27,9 @@ window.onload = function() {
   const pluginsPromise = registerplugins(loaded_plugins);
 
   Promise.all([detailsPromise, pluginsPromise]).then(function() {
-    fillGrid(loaded_details, loaded_plugins)
-    .then(initGrid());
+    settings.init()
+      .then(fillGrid(loaded_details, loaded_plugins)
+      .then(initGrid()));
 
   });
 }

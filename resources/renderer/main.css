@@ -1,122 +1,161 @@
-html {
-  overflow-y: scroll;
-}
-
-html,
-body {
-  background-color:#333;
-  color:#fff;
-  font-family:Tahoma;
-  margin:0;
-}
-
 @keyframes problem-slidein {
   0% {
-    transform:translateX(0%);
+    transform: translateX(103%);
   }
   4% {
-    transform:translateX(2%);
+    transform: translateX(105%);
   }
   8% {
-    transform:translateX(4%);
+    transform: translateX(107%);
   }
   92% {
-    transform:translateX(-107%);
+    transform: translateX(-4%);
   }
   96% {
-    transform:translateX(-105%);
+    transform: translateX(-2%);
   }
   100% {
-    transform:translateX(-103%);
+    transform: translateX(0%);
   }
 }
-
-.problem-popup {
-  position:fixed;
-  list-style:none;
-  top:1%;
-  left:98%;
-  min-width:250px;
-  width:20%;
-  min-height:100px;
-  transition:0s;
-  z-index:1;
+html {
+  overflow-y: scroll;
+  margin: 0;
 }
-  .problem-popup li {
-    margin-top:10px;
-  }
-  .problem-popup li:first-child {
-    margin-top:0px;
-  }
-  .problem-popup h3 {
-    margin:5px;
-    text-align:center;
-  }
-  .problem-popup .popup-icon {
-    margin:5px 10px 0 5px;
-  }
-  .problem-popup .popup-exit {
-    position:absolute;
-    top:1%;
-    right:1%;
-    margin:5px;
-  }
-  .problem-popup p {
-    margin:10px 5px 10px 5px;
-    padding-bottom:5px;
-  }
-.problem-animation-run {
-  animation: problem-slidein 0.5s forwards;
+body {
+  background-color: hsl(0, 0%, 20%);
+  color: #fff;
+  font-family: Tahoma;
+  margin: 24px 0 0 0;
 }
-
-.problem-animation-run-reverse {
-  animation: problem-slidein 0.5s reverse forwards;
-}
-
-.problem-error {
-  background:rgba(255, 0, 0, 0.5);
-  border:solid #F00 1px;
-  border-radius:1%;
-}
-.problem-warn {
-  background:rgba(255, 255, 0, 0.5);
-  border:solid #FF0 1px;
-  border-radius:1%;
-}
-
-.problem-info {
-  background:rgba(237, 237, 237, 0.5);
-  border:solid #EDEDED 1px;
-  border-radius:1%;
-}
-
 .grid {
-  margin:1% 0 0 1%;
-  padding:0 0 1% 0;
+  margin: 36px 0 0 12px;
+  padding: 0 0 1% 0;
 }
-
 .grid-sizer {
-  width: 24%;
+  width: 11%;
 }
-
 .gutter-sizer {
   width: 1%;
 }
-
 .grid-item {
-  background: #e6e5e4;
-  color:#000;
+  background: #adadad;
   float: left;
 }
-.grid-item--width2 {
-  width: 49%;
+.problem-popup {
+  position: fixed;
+  list-style: none;
+  top: 36px;
+  right: 12px;
+  min-width: 250px;
+  width: 20%;
+  min-height: 100px;
+  padding: 0;
+  margin: 0;
 }
-
+.problem-popup li {
+  margin-top: 10px;
+}
+.problem-popup li:first-child {
+  margin-top: 0;
+}
+.problem-popup h3 {
+  margin: 5px;
+  text-align: center;
+}
+.problem-popup .popup-icon {
+  margin: 5px 10px 0 5px;
+}
+.problem-popup .popup-exit {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 5px;
+  cursor: pointer;
+}
+.problem-popup p {
+  margin: 10px 5px 10px 5px;
+  padding-bottom: 5px;
+}
+.problem-animation-run {
+  animation: problem-slidein 0.5s forwards;
+}
+.problem-error {
+  background: rgba(255, 0, 0, 0.5);
+  border: solid #F00 1px;
+  border-radius: 1%;
+}
+.problem-warn {
+  background: rgba(255, 255, 0, 0.5);
+  border: solid #FF0 1px;
+  border-radius: 1%;
+}
+.problem-info {
+  background: rgba(237, 237, 237, 0.5);
+  border: solid #EDEDED 1px;
+  border-radius: 1%;
+}
+.settings {
+  background-color: #333;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 24px;
+  left: 0;
+}
+.settings .settings-exit {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 5px;
+  cursor: pointer;
+}
+#window-decoration {
+  -webkit-app-region: drag;
+  height: 24px;
+  width: 100%;
+  background-color: #141414;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+#title {
+  line-height: 24px;
+  margin: 0 0 0 10px;
+  float: left;
+}
+#buttons {
+  -webkit-app-region: no-drag;
+  float: right;
+  cursor: default;
+}
+#buttons button {
+  color: #fff;
+  background-color: #141414;
+  width: 30px;
+  height: 24px;
+  margin: 0 1px 0 1px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+#buttons #settings {
+  margin-right: 30px;
+}
+#buttons button:hover {
+  background-color: #222222;
+}
+#buttons #close:hover {
+  background-color: #F54242;
+}
 /* Copied from Packery documentation */
 .packery-drop-placeholder {
   outline: 3px dashed #444;
   outline-offset: -6px;
   /* transition position changing */
   -webkit-transition: -webkit-transform 0.2s;
-          transition: transform 0.2s;
+  transition: transform 0.2s;
 }

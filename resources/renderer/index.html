@@ -4,16 +4,30 @@
   <meta charset="UTF-8">
   <meta name="author" content="Victor Davidsson">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet/less" type="text/css" href="main.less">
   <!-- Font Awesome is used for the icons in the project. Read more at https://fontawesome.com/ -->
   <link rel="stylesheet" href="fa-all.min.css">
   <script src="../../scripts/renderer/renderer.js"></script>
 </head>
 <body>
-    <ul class="problem-popup"></ul>
     <div class="grid">
       <div class="grid-sizer"></div>
       <div class="gutter-sizer"></div>
+    </div>
+    <ul class="problem-popup"></ul>
+    <div class="settings" style="display:none;">
+      <i class="fas fa-times settings-exit"></i>
+    </div>
+
+    <!-- Window decoration should always be at the bottom of the document so that nothing can display over it -->
+    <div id="window-decoration">
+      <div id="title">Dashboard</div>
+      <div id="buttons">
+        <button id="settings"><i class="fas fa-cog"></i></button>
+        <button id="minimize"><i class="fas fa-window-minimize"></i></button>
+        <button id="maximize"><i class="fas fa-window-maximize"></i></button>
+        <button id="close"><i class="fas fa-window-close"></i></button>
+      </div>
     </div>
 </body>
 </html>

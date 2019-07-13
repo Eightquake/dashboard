@@ -45,7 +45,6 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
   attr = attr || 'id'; // default to id attribute
   this._resetLayout();
   // set item order and horizontal position from saved positions
-  console.log(positions);
   this.items = positions.map( function( itemPosition ) {
     var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
     var itemElem = this.element.querySelector( selector );
@@ -57,7 +56,6 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
 };
 
 function initGrid() {
-  console.log("initGrid");
   return new Promise(function(resolve) {
     let $grid = window.$('.grid').packery({
       columnWidth: '.grid-sizer',
@@ -80,6 +78,7 @@ function initGrid() {
       var positions = $grid.packery( 'getShiftPositions', 'data-item-id' );
       localStorage.setItem( 'dragPositions', JSON.stringify( positions ) );
     });
+    resolve();
   });
 }
 

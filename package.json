@@ -23,6 +23,7 @@
     "electron": "^5.0.6"
   },
   "dependencies": {
+    "caller": "^1.0.1",
     "draggabilly": "^2.2.0",
     "events": "^3.0.0",
     "jquery": "^3.4.1",

@@ -17,9 +17,12 @@
     <ul class="problem-popup"></ul>
     <div class="settings" style="display:none;">
       <i class="fas fa-times settings-exit"></i>
+      <div class="settings-categories"></div>
+      <div class="settings-list"></div>
     </div>
 
-    <!-- Window decoration should always be at the bottom of the document so that nothing can display over it -->
+    <!-- Window decoration should always be at the bottom of the document so that nothing can accidentally display over it -->
+    <!-- Stuff with z-index could overlap, but that seems unlikely -->
     <div id="window-decoration">
       <div id="title">Dashboard</div>
       <div id="buttons">

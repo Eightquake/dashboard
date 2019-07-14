@@ -121,6 +121,37 @@ body {
   margin:5px;
   cursor:pointer;
 }
+.settings-categories {
+  width:250px;
+  height:100%;
+  float:left;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.settings-categories a {
+  float:left;
+  width:100%;
+  display:block;
+  text-align:center;
+  color:#666;
+}
+.settings-categories a:hover {
+  color:#FFF;
+}
+
+.settings-list {
+  width:calc(100% - 250px);
+  height:100%;
+  float:right;
+}
+.settings-list .setting {
+  padding-bottom:20px;
+  border-bottom:1px solid white;
+}
+.settings-list label {
+  padding:5px;
+}
 
 #window-decoration {
  -webkit-app-region: drag;
@@ -137,6 +168,8 @@ body {
 #title {
   line-height:24px;
   margin:0 0 0 10px;
+  color:#666;
+  font-weight:bold;
   float:left;
 }
 #buttons {

@@ -1,5 +1,4 @@
 const remote = require('electron').remote;
-const caller = require('caller');
 
 function initSettings() {
   return new Promise(function(resolve) {
@@ -57,21 +56,6 @@ function initSettings() {
   });
 }
 
-function updateSettings(string, obj) {
-  settingsObj[string] = obj;
-  localStorage.setItem("settingsObj", JSON.stringify(settingsObj));
-}
-
-function getSettings() {
-  return settingsObj[encodeURI(caller())];
-}
-
-function setSettings(setting) {
-  updateSettings(encodeURI(caller()), setting);
-}
-
 module.exports = {
   init: initSettings,
-  get: getSettings,
-  set: setSettings
 }

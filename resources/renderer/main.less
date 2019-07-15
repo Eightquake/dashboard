@@ -1,5 +1,8 @@
-@backgroundColor: hsl(0, 0%, 20%);
-@accentColor: hardlight(@backgroundColor, #CCCCCC);
+@dark-backgroundColor: hsl(0, 0%, 20%);
+@dark-accentColor: hardlight(@dark-backgroundColor, #CCCCCC);
+
+@light-backgroundColor: hsl(0, 0%, 80%);
+@light-accentColor: hardlight(@light-backgroundColor, #CCCCCC);
 
 @keyframes problem-slidein {
   0% {
@@ -27,11 +30,17 @@ html {
   margin:0;
 }
 body {
-  background-color:@backgroundColor;
-  color:#fff;
   font-family:Tahoma;
   margin:24px 0 0 0;
 }
+  body.dark-theme {
+    background-color: @dark-backgroundColor;
+    color: #FFF;
+  }
+  body.light-theme {
+    background-color: @light-backgroundColor;
+    color:#000;
+  }
 
 .grid {
   margin:36px 0 0 12px;
@@ -47,9 +56,14 @@ body {
 }
 
 .grid-item {
-  background: @accentColor;
   float: left;
 }
+  .grid-item.dark-theme {
+    background: @dark-accentColor;
+  }
+  .grid-item.light-theme {
+    background: @light-accentColor;
+  }
 .problem-popup {
   position:fixed;
   list-style:none;
@@ -107,13 +121,20 @@ body {
 }
 
 .settings {
-  background-color:#333;
   height:100%;
   width:100%;
   position:fixed;
   top:24px;
   left:0;
 }
+  .settings.dark-theme {
+    background-color: @dark-backgroundColor;
+    color:#FFF;
+  }
+  .settings.light-theme {
+    background-color: @light-backgroundColor;
+    color:#000;
+  }
 .settings .settings-exit {
   position:absolute;
   top:1%;
@@ -129,6 +150,12 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+  .settings-categories.dark-theme {
+    border-right:solid 1px @dark-accentColor;
+  }
+  .settings-categories.light-theme {
+    border-right:solid 1px @light-accentColor;
+  }
 .settings-categories a {
   float:left;
   width:100%;
@@ -141,14 +168,20 @@ body {
 }
 
 .settings-list {
-  width:calc(100% - 250px);
+  width:calc(100% - 300px);
   height:100%;
   float:right;
 }
 .settings-list .setting {
   padding-bottom:20px;
-  border-bottom:1px solid white;
+  width:calc(100% - 50px);
 }
+  .settings-list .setting.dark-theme {
+    border-bottom:1px solid @dark-accentColor;
+  }
+  .settings-list .setting.light-theme {
+    border-bottom:1px solid @light-accentColor;
+  }
 .settings-list label {
   padding:5px;
 }
@@ -157,13 +190,18 @@ body {
  -webkit-app-region: drag;
  height: 24px;
  width:100%;
- background-color:hardlight(@backgroundColor, #333333);
  padding:0;
  margin:0;
  position:fixed;
  top:0;
  left:0;
  cursor:grab;
+}
+#window-decoration.dark-theme {
+  background-color:hardlight(@dark-backgroundColor, #333333);
+}
+#window-decoration.light-theme {
+  background-color:hardlight(@light-backgroundColor, #333333);
 }
 #title {
   line-height:24px;
@@ -179,7 +217,6 @@ body {
 }
 #buttons button {
   color:#666;
-  background-color:hardlight(@backgroundColor, #333333);
   width:30px;
   height:24px;
   margin:0 1px 0 1px;
@@ -187,12 +224,23 @@ body {
   border:none;
   outline:none;
 }
+#buttons button.dark-theme {
+  background-color:hardlight(@dark-backgroundColor, #333333);
+}
+#buttons button.light-theme {
+  background-color:hardlight(@light-backgroundColor, #333333);
+}
 #buttons #settings {
   margin-right:30px;
 }
 #buttons button:hover {
   color:#FFF;
-  background-color:hardlight(@backgroundColor, #555555);
+}
+#buttons button.dark-theme:hover {
+  background-color:hardlight(@dark-backgroundColor, #555555);
+}
+#buttons button.dark-theme:hover {
+  background-color:hardlight(@light-backgroundColor, #555555);
 }
 #buttons #close:hover {
   background-color:#F54242;

@@ -23,10 +23,16 @@ html {
   margin: 0;
 }
 body {
-  background-color: hsl(0, 0%, 20%);
-  color: #fff;
   font-family: Tahoma;
   margin: 24px 0 0 0;
+}
+body.dark-theme {
+  background-color: hsl(0, 0%, 20%);
+  color: #FFF;
+}
+body.light-theme {
+  background-color: hsl(0, 0%, 80%);
+  color: #000;
 }
 .grid {
   margin: 36px 0 0 12px;
@@ -39,8 +45,13 @@ body {
   width: 1%;
 }
 .grid-item {
-  background: #adadad;
   float: left;
+}
+.grid-item.dark-theme {
+  background: #adadad;
+}
+.grid-item.light-theme {
+  background: #ebebeb;
 }
 .problem-popup {
   position: fixed;
@@ -96,12 +107,19 @@ body {
   border-radius: 1%;
 }
 .settings {
-  background-color: #333;
   height: 100%;
   width: 100%;
   position: fixed;
   top: 24px;
   left: 0;
+}
+.settings.dark-theme {
+  background-color: hsl(0, 0%, 20%);
+  color: #FFF;
+}
+.settings.light-theme {
+  background-color: hsl(0, 0%, 80%);
+  color: #000;
 }
 .settings .settings-exit {
   position: absolute;
@@ -110,11 +128,52 @@ body {
   margin: 5px;
   cursor: pointer;
 }
+.settings-categories {
+  width: 250px;
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.settings-categories.dark-theme {
+  border-right: solid 1px #adadad;
+}
+.settings-categories.light-theme {
+  border-right: solid 1px #ebebeb;
+}
+.settings-categories a {
+  float: left;
+  width: 100%;
+  display: block;
+  text-align: center;
+  color: #666;
+}
+.settings-categories a:hover {
+  color: #FFF;
+}
+.settings-list {
+  width: calc(100% - 300px);
+  height: 100%;
+  float: right;
+}
+.settings-list .setting {
+  padding-bottom: 20px;
+  width: calc(100% - 50px);
+}
+.settings-list .setting.dark-theme {
+  border-bottom: 1px solid #adadad;
+}
+.settings-list .setting.light-theme {
+  border-bottom: 1px solid #ebebeb;
+}
+.settings-list label {
+  padding: 5px;
+}
 #window-decoration {
   -webkit-app-region: drag;
   height: 24px;
   width: 100%;
-  background-color: #141414;
   padding: 0;
   margin: 0;
   position: fixed;
@@ -122,9 +181,17 @@ body {
   left: 0;
   cursor: grab;
 }
+#window-decoration.dark-theme {
+  background-color: #141414;
+}
+#window-decoration.light-theme {
+  background-color: #525252;
+}
 #title {
   line-height: 24px;
   margin: 0 0 0 10px;
+  color: #666;
+  font-weight: bold;
   float: left;
 }
 #buttons {
@@ -133,8 +200,7 @@ body {
   cursor: default;
 }
 #buttons button {
-  color: #fff;
-  background-color: #141414;
+  color: #666;
   width: 30px;
   height: 24px;
   margin: 0 1px 0 1px;
@@ -142,11 +208,23 @@ body {
   border: none;
   outline: none;
 }
+#buttons button.dark-theme {
+  background-color: #141414;
+}
+#buttons button.light-theme {
+  background-color: #525252;
+}
 #buttons #settings {
   margin-right: 30px;
 }
 #buttons button:hover {
+  color: #FFF;
+}
+#buttons button.dark-theme:hover {
   background-color: #222222;
+}
+#buttons button.dark-theme:hover {
+  background-color: #888888;
 }
 #buttons #close:hover {
   background-color: #F54242;

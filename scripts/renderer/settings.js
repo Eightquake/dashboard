@@ -42,7 +42,6 @@ function initSettings() {
     if(localStorage.getItem("settings-theme")) {
       let settingsTheme = localStorage.getItem("settings-theme");
       settingsTheme = settingsTheme.charAt(0).toUpperCase() + settingsTheme.slice(1);
-      console.log(`input.theme-choice[value=${settingsTheme}]`);
       document.querySelector(`input.theme-choice[value=${settingsTheme}]`).checked = true;
       if(settingsTheme != "Dark") {
         document.querySelectorAll(".dark-theme").forEach(function(element) {

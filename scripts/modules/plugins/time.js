@@ -2,7 +2,6 @@
  * A simple module that displays the time.
  */
 
-let name = "time";
 let detail, divelement;
 
 let fullDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -39,11 +38,9 @@ function update() {
     .replace(/(%y)/g, date.getFullYear() - 2000); /* I mean, this will work for a long time - but not forever. */
 }
 
-/* Exports a function that takes the map called loaded_plugins and adds it's own functions and information in it. */
-module.exports = function(loaded_plugins) {
-  let obj = {
+/* Exports an object with everything needed for the plugin to function. */
+module.exports = function () {
+  return {
     handler: handler
   }
-  /* Append the map with key name and value the object that includes everything. Will overwrite without warning! */
-  loaded_plugins.set(name, obj);
-};
+}

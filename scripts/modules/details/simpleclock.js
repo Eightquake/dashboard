@@ -9,7 +9,7 @@ module.exports = function(loaded_details) {
     style: "font-size: 48px; line-height: 150px; width: 250px; height: 150px; text-align: center;",
     string: "%hh:%mm",
     settings: {
-      used_plugins: ["time", "calendar"],
+      used_plugins: ["time.js"],
       update_interval: "* * * * *"
     }
   }

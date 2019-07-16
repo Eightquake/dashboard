@@ -36,7 +36,7 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
     try {
       positions = JSON.parse( positions );
     } catch( error ) {
-      global.problem.emit("error", 'JSON parse error: ' + error);
+      global.problem.emit("error", `Packery encountered a parse error: ${error}, maybe try clearing localstorage?`);
       this.layout();
       return;
     }
@@ -48,9 +48,16 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
   this.items = positions.map( function( itemPosition ) {
     var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
     var itemElem = this.element.querySelector( selector );
-    var item = this.getItem( itemElem );
-    item.rect.x = itemPosition.x * this.packer.width;
-    return item;
+    if(itemElem) {
+      var item = this.getItem( itemElem );
+      item.rect.x = itemPosition.x * this.packer.width;
+      return item;
+    }
+    else {
+      /* There is no element but there is a reference to it in the localstorage. Most likely the detail got removed, so let's remove the reference to it */
+      this.splice(positions.indexOf(itemPosition), 1);
+      localStorage.setItem('dragPositions', JSON.stringify(positions));
+    }
   }, this );
   this.shiftLayout();
 };

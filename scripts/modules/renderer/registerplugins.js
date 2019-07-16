@@ -5,7 +5,7 @@ function handler(loaded_plugins) {
   return new Promise(function(resolve) {
     fs.readdir(readPath, function(err, files) {
       for (let i = 0; i < files.length; i++) {
-        require(readPath + files[i])(loaded_plugins);
+        loaded_plugins.set(files[i], require(readPath + files[i])());
       }
       resolve();
     });

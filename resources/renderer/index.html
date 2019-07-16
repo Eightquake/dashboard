@@ -10,47 +10,40 @@
   <script src="../../scripts/renderer/renderer.js"></script>
 </head>
 <body class="dark-theme">
-    <div class="grid">
-      <div class="grid-sizer"></div>
-      <div class="gutter-sizer"></div>
+  <div class="grid">
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+  </div>
+  <ul class="problem-popup"></ul>
+  <div class="settings dark-theme" style="display:none;">
+    <i class="fas fa-times settings-exit"></i>
+    <div class="settings-categories dark-theme">
+      <a href="#theme">Theme</a>
+      <a href="#test">Testing</a>
     </div>
-    <ul class="problem-popup"></ul>
-    <div class="settings dark-theme" style="display:none;">
-        <i class="fas fa-times settings-exit"></i>
-        <div class="settings-categories dark-theme">
-          <a href="#theme">Theme</a>
-          <a href="#test">Testing</a>
-        </div>
-        <div class="settings-list">
-          <div class="setting dark-theme" id="theme">
-            <h3>Theme</h3>
-            <p>Choose between a dark or light theme.</p>
-            <input type="radio" class="theme-choice" name="theme-choice" id="Dark" value="Dark">
-            <label for="Dark">Dark</label>
-            <input type="radio" class="theme-choice" name="theme-choice" id="Light" value="Light">
-            <label for="Light">Light</label>
-            <button type="button" class="theme-choice">Save</button>
-          </div>
-          <div class="setting dark-theme" id="test">
-            <h3>Testing</h3>
-            <p>Because I needed to test if my code works with more than one setting.</p>
-            <label>Foo (string)</label><input type="text" class="test" name="foo">
-            <button type="button">Save</button>
-          </div>
-        </div>
+    <div class="settings-list">
+      <div class="setting dark-theme" id="theme">
+        <h3>Theme</h3>
+        <p>Choose between a dark or light theme.</p>
+        <input type="radio" class="theme-choice" name="theme-choice" id="Dark" value="Dark">
+        <label for="Dark">Dark</label>
+        <input type="radio" class="theme-choice" name="theme-choice" id="Light" value="Light">
+        <label for="Light">Light</label>
+        <button type="button" class="theme-choice">Save</button>
       </div>
     </div>
+  </div>
 
-    <!-- Window decoration should always be at the bottom of the document so that nothing can accidentally display over it -->
-    <!-- Stuff with z-index could overlap, but that seems unlikely -->
-    <div id="window-decoration" class="dark-theme">
-      <div id="title">Dashboard</div>
-      <div id="buttons">
-        <button id="settings" class="dark-theme"><i class="fas fa-cog"></i></button>
-        <button id="minimize" class="dark-theme"><i class="fas fa-window-minimize"></i></button>
-        <button id="maximize" class="dark-theme"><i class="fas fa-window-maximize"></i></button>
-        <button id="close" class="dark-theme"><i class="fas fa-window-close"></i></button>
-      </div>
+  <!-- Window decoration should always be at the bottom of the document so that nothing can accidentally display over it -->
+  <!-- Stuff with z-index could overlap, but that seems unlikely -->
+  <div id="window-decoration" class="dark-theme">
+    <div id="title">Dashboard</div>
+    <div id="buttons">
+      <button id="settings" class="dark-theme"><i class="fas fa-cog"></i></button>
+      <button id="minimize" class="dark-theme"><i class="fas fa-window-minimize"></i></button>
+      <button id="maximize" class="dark-theme"><i class="fas fa-window-maximize"></i></button>
+      <button id="close" class="dark-theme"><i class="fas fa-window-close"></i></button>
     </div>
+  </div>
 </body>
 </html>

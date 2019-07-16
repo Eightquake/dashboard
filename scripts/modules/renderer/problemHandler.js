@@ -1,9 +1,14 @@
-/* This script could hook into the console functions for logging and warning,
- * but I want to discourage the use of console to communicate with the user so I won't do that
- */
+/**
+  * This script could hook into the console functions for logging and warning, but I want to discourage the use of console to communicate with the user so I won't do that
+  * @author Victor Davidsson
+  * @version 0.1.0
+  */
 
+/* The EventEmitter is the only thing exported as of now, and when another module emits a event on it the handlers here handle it */
 const EventEmitter = require('events');
 let problemHandler = new EventEmitter();
+
+/* Object to "translate" the event name to a icon */
 let icons = {"error": "fa-exclamation-triangle", "warn": "fa-exclamation-circle", "info": "fa-exclamation"};
 
 function createPopup(code, problem, string) {

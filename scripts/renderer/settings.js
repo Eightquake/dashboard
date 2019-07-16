@@ -1,7 +1,15 @@
+/**
+  * Initializes the settings screen and all of the buttons that need to do something. Earlier, in commit c6fdfa6, this also created settings and could save them back into the code, but I didn't like how messy the code is so I reverted it.
+  * @author Victor Davidsson
+  * @version 0.1.0
+  */
+
+/* Remote is needed to manipulate the window when pressing the buttons - minimize, maximise and close. */
 const remote = require('electron').remote;
 
 function initSettings() {
   return new Promise(function(resolve) {
+    /* Add the functions to manipulate the window to the buttons. Maybe this would be easier with React, but I don't know React so I won't use it. */
     document.querySelector("button#minimize").onclick = function() {
       const window = remote.getCurrentWindow();
       window.minimize();
@@ -18,18 +26,23 @@ function initSettings() {
       const window = remote.getCurrentWindow();
       window.close();
     }
+
+    /* Add function to the settings cog to open the settings window, or close it if it is already open */
     document.querySelector("button#settings").onclick = function() {
       let settingsDiv = document.querySelector("div.settings")
       /* If the display is none, change it to block - otherwise set it to none. This allows the settings-cog to toggle the settings screen */
       settingsDiv.style.display = settingsDiv.style.display === 'none'? "block" : 'none';
     }
+    /* Also add function to the settings close button to hide the settings window */
     document.querySelector("i.settings-exit").onclick = function() {
       document.querySelector("div.settings").style.display = "none";
     }
-
+    /* When pressing the save button for the theme choice on the settings screen, update the entire document to match the theme selected and save it for the future */
     document.querySelector("button.theme-choice").onclick = function() {
+      /* I use toLowerCase because in index.html the value is capitalized, but everywhere in the code it is all lowercase */
       let choice = document.querySelector("input.theme-choice:checked").value.toLowerCase();
       let setting = localStorage.getItem("settings-theme");
+      /* Only update if the choice of theme has actually been changed */
       if(choice != setting) {
         localStorage.setItem("settings-theme", choice);
         document.querySelectorAll(`.${setting}-theme`).forEach(function(element) {
@@ -38,9 +51,9 @@ function initSettings() {
       }
     }
 
+    /* At startup, if the theme is set, set the correct radio button as checked in settings and if the theme is light update the entire document */
     if(localStorage.getItem("settings-theme")) {
       let settingsTheme = localStorage.getItem("settings-theme");
-      settingsTheme = settingsTheme.charAt(0).toUpperCase() + settingsTheme.slice(1);
       document.querySelector(`input.theme-choice[value=${settingsTheme}]`).checked = true;
       if(settingsTheme != "Dark") {
         document.querySelectorAll(".dark-theme").forEach(function(element) {
@@ -48,6 +61,7 @@ function initSettings() {
         });
       }
     }
+    /* Or, if there is no theme stored in localstorage, just default it to dark */
     else {
       document.querySelector("input[value=Dark]").checked = true;
       localStorage.setItem("settings-theme", "dark");

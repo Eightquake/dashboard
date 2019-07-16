@@ -1,4 +1,8 @@
-'use strict'
+/**
+  * The main process of Electron. It is in charge of opening the main window and handling when it closes.
+  * @author Victor Davidsson
+  * @version 0.1.0
+  */
 
 const settings = require("../../settings.json");
 /* As this main-process file is deep inside folders for readibility, I need a variable that is the base directory of the project */
@@ -8,6 +12,11 @@ global.__basedir = settings.basedir;
 const { app, BrowserWindow } = require("electron");
 
 let win;
+
+/**
+  * The function that will create and open the window when it's time.
+  * @private
+  */
 function createWindow () {
   win = new BrowserWindow({
     width: 1280,

@@ -1,3 +1,9 @@
+/**
+  * Initializes the grid and everything that is needed for Packery, Draggabilly to work correctly. Also it restores the last layout if one is found.
+  * @author Victor Davidsson
+  * @version 0.1.0
+  */
+
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
@@ -23,8 +29,7 @@ Packery.prototype.getShiftPositions = function( attrName ) {
     }
   });
 };
-
-/* Try to find and create a layout */
+/* Try to find and create a layout, code added by me if an element is not present to slice it from the array */
 Packery.prototype.initShiftLayout = function( positions, attr ) {
   if ( !positions ) {
     // if no initial positions, run packery layout
@@ -64,6 +69,7 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
 
 function initGrid() {
   return new Promise(function(resolve) {
+    /* Initialize Packery on the grid, but don't initialize the layout yet, as it have to be changed */
     let $grid = window.$('.grid').packery({
       columnWidth: '.grid-sizer',
       gutter: '.gutter-sizer',
@@ -71,6 +77,7 @@ function initGrid() {
       percentPosition: true,
       initLayout: false
     });
+    /* Make every grid-item, the items added by fillGrid, draggable using Draggabilly */
     $grid.find('.grid-item').each( function( i, gridItem ) {
       let draggie = new Draggabilly( gridItem );
       $grid.packery( 'bindDraggabillyEvents', draggie );

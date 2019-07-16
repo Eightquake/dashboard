@@ -1,7 +1,9 @@
-/*
- * A simple module that displays the time.
- * Can only handle one detail at a time - I think this is a limitation to node-schedule
- */
+/**
+  * A simple module that displays the time.
+  * Can only handle one detail at a time - I think this is a limitation to node-schedule
+  * @author Victor Davidsson
+  * @version 0.5.0
+  */
 
 let detail, divelement;
 

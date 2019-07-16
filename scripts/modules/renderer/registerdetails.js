@@ -6,6 +6,7 @@ function handler(loaded_details) {
     fs.readdir(readPath, function(err, files) {
       for (let i = 0; i < files.length; i++) {
         require(readPath + files[i])(loaded_details);
+        loaded_details.set(files[i], require(readPath + [files[i]])());
       }
       resolve();
     });

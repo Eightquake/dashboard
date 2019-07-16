@@ -14,7 +14,7 @@ function fillGrid(loaded_details, loaded_plugins) {
         if(loaded_plugins.has(pluginName)) {
           let plugin = loaded_plugins.get(pluginName);
           /* Every plugin get's the detail in it's entirety, and a reference to the specific grid-item div */
-          plugin.handler(detail, newGriditem);
+          plugin.handler(detail, newGriditem, name);
         }
         else {
           global.problem.emit("warn", `Detail ${name} needs plugin ${pluginName}, which doesn't exist. Don't expect the detail to show up correctly.`);

@@ -13,7 +13,7 @@
   * @param {Map} loaded_plugins - The Map of all of the loaded plugins where key is the name of the plugin and value is what the plugin exports
   * @returns {Promise} A promise that will resolve once all of the grid-items have been created and all of the details needed plugins have been called.
   */
-function fillGrid(loaded_details, loaded_plugins) {
+function fillGrid(loaded_details, loaded_plugins, created_plugins) {
   return new Promise(function(resolve) {
     /* count is used for Packery to restore the last layout, every grid-element gets its own id starting from 1 and going up. If count is 0 there is no detail at all. */
     let count = 0;
@@ -31,9 +31,10 @@ function fillGrid(loaded_details, loaded_plugins) {
       for(let pluginName of detail.settings.used_plugins) {
         /* Make sure the plugin actually exists and is loaded */
         if(loaded_plugins.has(pluginName)) {
-          let plugin = loaded_plugins.get(pluginName);
-          /* Every plugin getss the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
-          plugin.handler(detail, newGriditem, name);
+          let Plugin = loaded_plugins.get(pluginName);
+          created_plugins.push(new Plugin(detail, newGriditem));
+          /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
+          //plugin.handler(detail, newGriditem, name);
         }
         else {
           global.problem.emit("warn", `Detail ${name} needs plugin ${pluginName}, which doesn't exist. Don't expect the detail to show up correctly.`);

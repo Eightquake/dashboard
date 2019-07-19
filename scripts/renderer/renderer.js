@@ -53,6 +53,7 @@ const registerplugins = require(global.__basedir + "/scripts/renderer/registerpl
   */
 let loaded_details = new Map();
 let loaded_plugins = new Map();
+let created_plugins = [];
 window.onload = function() {
   /* Both registerdetails and registerplugins start by returning a promise, then running their code */
   const detailsPromise = registerdetails(loaded_details);
@@ -61,7 +62,7 @@ window.onload = function() {
   /* When both promises are resolved, meaning both have finished running their code we can start running all the other code that depends on the details and plugins */
   Promise.all([detailsPromise, pluginsPromise]).then(function() {
     settings.init()
-      .then(fillGrid(loaded_details, loaded_plugins)
+      .then(fillGrid(loaded_details, loaded_plugins, created_plugins)
       .then(initGrid()));
   });
 }

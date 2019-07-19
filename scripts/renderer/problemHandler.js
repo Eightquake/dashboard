@@ -45,7 +45,7 @@ problemHandler.on("error", (errorString) => {
 
 /**
   * Warning event, when this is emitted on the {@link global#problem} EventEmitter it will create a yellow popup with a warning symbol
-  * @event warning
+  * @event warn
   */
 problemHandler.on("warn", (warnString) => {
   createPopup("warn", "Warning", warnString);

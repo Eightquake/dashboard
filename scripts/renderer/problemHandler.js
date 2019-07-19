@@ -1,7 +1,9 @@
 /**
+  * Exports an EventEmitter so that other modules can emit an event on it that is handled here. The events are types of problems: warning, error and similar and when an event is emitted the function createPopup creates a popup for the user to see
   * This script could hook into the console functions for logging and warning, but I want to discourage the use of console to communicate with the user so I won't do that
+  * @module problemHandler
   * @author Victor Davidsson
-  * @version 0.1.0
+  *
   */
 
 /* The EventEmitter is the only thing exported as of now, and when another module emits a event on it the handlers here handle it */
@@ -33,14 +35,26 @@ process.on("uncaughtException", (err) => {
   createPopup("error", "Critical Error", err);
 });
 
+/**
+  * Error event, when this is emitted on the {@link global#problem} EventEmitter it will create a red popup with a critical-warning symbol
+  * @event error
+  */
 problemHandler.on("error", (errorString) => {
   createPopup("error", "Error", errorString);
 });
 
+/**
+  * Warning event, when this is emitted on the {@link global#problem} EventEmitter it will create a yellow popup with a warning symbol
+  * @event warning
+  */
 problemHandler.on("warn", (warnString) => {
   createPopup("warn", "Warning", warnString);
 });
 
+/**
+  * Information event, when this is emitted on the {@link global#problem} EventEmitter it  will create a grey popup with a exclamation point as a symbol
+  * @event info
+  */
 problemHandler.on("info", (infoString) => {
   createPopup("info", "Note", infoString);
 });

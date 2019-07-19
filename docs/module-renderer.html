@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: renderer</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: renderer</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">The renderer process. It registers some global variables and on document load it starts the chain of functions that is needed to make the app work.</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Victor Davidsson</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~fillGrid"><span class="type-signature">(inner, constant) </span>fillGrid<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Code that is used to initialize everything about the grid. fillGrid creates all of the needed elements in the grid and initGrid starts Packery and everything else needed for Packery to work
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~loaded_details"><span class="type-signature">(inner) </span>loaded_details<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    On window.onload event we know that the grid is fully ready to be filled and to be made into a Packery grid. onready.js takes care of that.But first, we need to create the Maps for the loaded details and plugins. I guess these could be block-level variables instead of module-level but no harm in either.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~registerdetails"><span class="type-signature">(inner, constant) </span>registerdetails<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Plugins are the code that handles strings and does whatever it is supposed to do with it. Plugins will have it's code run over and over.Details register a string or similar to a plugin. A modules code will only be run once.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-main.html">main</a></li><li><a href="module-plugin-time.html">plugin-time</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warning">warning</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Jul 19 2019 13:41:40 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

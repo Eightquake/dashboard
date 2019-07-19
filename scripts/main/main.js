@@ -1,7 +1,8 @@
 /**
   * The main process of Electron. It is in charge of opening the main window and handling when it closes.
+  * @module main
   * @author Victor Davidsson
-  * @version 0.1.0
+  * 
   */
 
 const settings = require("../../settings.json");

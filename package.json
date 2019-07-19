@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron scripts/main/main.js",
-    "install": "node config.js"
+    "install": "node config.js",
+    "gen-docs": "jsdoc -r -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   },
   "homepage": "https://github.com/Eightquake/dashboard#readme",
   "devDependencies": {
-    "electron": "^5.0.6"
+    "electron": "^5.0.6",
+    "jsdoc": "^3.6.3"
   },
   "dependencies": {
     "caller": "^1.0.1",

@@ -47,7 +47,7 @@ function initSettings() {
     /* When pressing the save button for the theme choice on the settings screen, update the entire document to match the theme selected and save it for the future */
     document.querySelector("button.theme-choice").onclick = function() {
       /* I use toLowerCase because in index.html the value is capitalized, but everywhere in the code it is all lowercase */
-      let choice = document.querySelector("input.theme-choice:checked").value.toLowerCase();
+      let choice = document.querySelector("input.theme-choice:checked").value;
       let setting = localStorage.getItem("settings-theme");
       /* Only update if the choice of theme has actually been changed */
       if(choice != setting) {
@@ -62,7 +62,7 @@ function initSettings() {
     if(localStorage.getItem("settings-theme")) {
       let settingsTheme = localStorage.getItem("settings-theme");
       document.querySelector(`input.theme-choice[value=${settingsTheme}]`).checked = true;
-      if(settingsTheme != "Dark") {
+      if(settingsTheme != "dark") {
         document.querySelectorAll(".dark-theme").forEach(function(element) {
           element.classList.replace("dark-theme", "light-theme");
         });
@@ -70,7 +70,7 @@ function initSettings() {
     }
     /* Or, if there is no theme stored in localstorage, just default it to dark */
     else {
-      document.querySelector("input[value=Dark]").checked = true;
+      document.querySelector("input[value=dark]").checked = true;
       localStorage.setItem("settings-theme", "dark");
     }
     resolve();

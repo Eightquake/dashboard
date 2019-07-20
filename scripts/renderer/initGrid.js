@@ -1,5 +1,6 @@
 /**
   * Initializes the grid and everything that is needed for Packery, Draggabilly to work correctly. Also it restores the last layout if one is found.
+  * @category Renderer
   * @module initGrid
   * @author Victor Davidsson
   *

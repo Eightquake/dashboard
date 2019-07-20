@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Eightquake/dashboard#readme",
   "devDependencies": {
+    "better-docs": "^1.1.6",
     "electron": "^5.0.6",
     "jsdoc": "^3.6.3"
   },

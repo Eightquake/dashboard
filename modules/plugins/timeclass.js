@@ -1,5 +1,6 @@
 /**
   * A class for a simple plugin that can be used for displaying time and date.
+  * @category Plugins
   * @author Victor Davidsson
   * @version 1.5.0
   */

@@ -1,6 +1,7 @@
 /**
   * Exports an EventEmitter so that other modules can emit an event on it that is handled here. The events are types of problems: warning, error and similar and when an event is emitted the function createPopup creates a popup for the user to see
   * This script could hook into the console functions for logging and warning, but I want to discourage the use of console to communicate with the user so I won't do that
+  * @category Renderer
   * @module problemHandler
   * @author Victor Davidsson
   *

@@ -1,5 +1,6 @@
 /**
   * Fills the grid by creating new elements for every detail, and then calling every plugin the detail relies on with references to the grid-item and detail.
+  * @category Renderer
   * @module fillGrid
   * @author Victor Davidsson
   *

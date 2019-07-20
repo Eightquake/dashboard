@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
     <title>JSDoc: Global</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
 </head>
 
 <body>
-
-<div id="main">
-
-    <h1 class="page-title">Global</h1>
-
-    
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">Electron Dashboard by Victor Davidsson</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Eightquake/dashboard" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Plugins</h2><h3>Modules</h3><ul><li><a href="module-pluginTime.html">pluginTime</a></li></ul><h3>Classes</h3><ul><li><a href="pluginTime.html">pluginTime</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Title</p>
+                        <h1>Global</h1>
+                    </header>
+                    
+                    
 
 
 
@@ -66,7 +110,6 @@
     
 
     
-
     
 
     
@@ -94,20 +137,26 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
             
-<h4 class="name" id="problem"><span class="type-signature"></span>problem<span class="type-signature"></span></h4>
+                <div class="member">
+
+<h4 class="name" id="problem">
+    
+    <span class="code-name">
+        problem
+    </span>
+</h4>
 
 
 
 
 <div class="description">
-    Error handler script, that any code can emit an event on. When an event error, warn, or info is emitted a popup will be shown to the user.All scripts should use this to communicate with the user, instead of using the console or similar.
+    <p>Error handler script, that any code can emit an event on. When an event error, warn, or info is emitted a popup will be shown to the user.
+All scripts should use this to communicate with the user, instead of using the console or similar.</p>
 </div>
-
-
 
 
 
@@ -138,14 +187,6 @@
     
 
     
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
     
 
     
@@ -158,25 +199,38 @@
     
 
     
+
+    
+        <p class="tag-source">
+            <a href="scripts_renderer_renderer.js.html" class="button">View Source</a>
+            <span>
+                <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line29">line 29</a>
+            </span>
+        </p>
+    
 </dl>
 
 
 
 
 
-
-        
+</div>
             
-<h4 class="name" id="schedule"><span class="type-signature"></span>schedule<span class="type-signature"></span></h4>
+                <div class="member">
+
+<h4 class="name" id="schedule">
+    
+    <span class="code-name">
+        schedule
+    </span>
+</h4>
 
 
 
 
 <div class="description">
-    Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule something it should use this.
+    <p>Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule something it should use this.</p>
 </div>
-
-
 
 
 
@@ -207,14 +261,6 @@
     
 
     
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
     
 
     
@@ -227,14 +273,25 @@
     
 
     
+
+    
+        <p class="tag-source">
+            <a href="scripts_renderer_renderer.js.html" class="button">View Source</a>
+            <span>
+                <a href="scripts_renderer_renderer.js.html">scripts/renderer/renderer.js</a>, <a href="scripts_renderer_renderer.js.html#line21">line 21</a>
+            </span>
+        </p>
+    
 </dl>
 
 
 
 
 
-
-        
+</div>
+            
+            </div>
+        </div>
     
 
     
@@ -249,19 +306,23 @@
 
 
 
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-main.html">main</a></li><li><a href="module-pluginTime.html">pluginTime</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Classes</h3><ul><li><a href="pluginTime.html">pluginTime</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 16:53:19 GMT+0200 (Central European Summer Time)
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 17:14:27 GMT+0200 (Central European Summer Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
 </footer>
 
 <script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
 <script src="scripts/linenumber.js"> </script>
 </body>
 </html>

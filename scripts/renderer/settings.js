@@ -1,5 +1,6 @@
 /**
   * Initializes the settings screen and all of the buttons that need to do something. Earlier, in commit c6fdfa6, this also created settings and could save them back into the code, but I didn't like how messy the code is so I reverted it.
+  * @category Renderer
   * @module settings
   * @author Victor Davidsson
   *

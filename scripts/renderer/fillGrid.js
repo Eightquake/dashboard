@@ -31,10 +31,12 @@ function fillGrid(loaded_details, loaded_plugins, created_plugins) {
       for(let pluginName of detail.settings.used_plugins) {
         /* Make sure the plugin actually exists and is loaded */
         if(loaded_plugins.has(pluginName)) {
-          let Plugin = loaded_plugins.get(pluginName);
-          created_plugins.push(new Plugin(detail, newGriditem));
-          /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
-          //plugin.handler(detail, newGriditem, name);
+          if(loaded_plugins.get(pluginName).type == "class") {
+            let Plugin = loaded_plugins.get(pluginName).class;
+            created_plugins.push(new Plugin(detail, newGriditem));
+            /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
+            //plugin.handler(detail, newGriditem, name);
+          }
         }
         else {
           global.problem.emit("warn", `Detail ${name} needs plugin ${pluginName}, which doesn't exist. Don't expect the detail to show up correctly.`);

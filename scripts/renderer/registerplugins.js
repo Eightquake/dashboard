@@ -13,7 +13,10 @@ function handler(loaded_plugins) {
   return new Promise(function(resolve) {
     fs.readdir(readPath, function(err, files) {
       for (let i = 0; i < files.length; i++) {
-        loaded_plugins.set(files[i], require(readPath + files[i]));
+        let file = require(readPath + files[i]);
+        if(file.type == "class") {
+          loaded_plugins.set(files[i], file);
+        }
       }
       resolve();
     });

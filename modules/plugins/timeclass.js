@@ -52,4 +52,7 @@ class pluginTime {
 }
 
 /* Exports the entire class. This way the code can create a new object from this class everytime it is needed */
-module.exports = pluginTime;
+module.exports = {
+  type: "class",
+  class: pluginTime,
+}

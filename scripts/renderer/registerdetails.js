@@ -22,7 +22,13 @@ function handler(loaded_details) {
         }
         else if(jsRegex.test(files[i])) {
           /* The file is a JavaScript-file, as it ends with .js or .JS. We should call the function it hopefully exports */
-          loaded_details.set(files[i], require(readPath + [files[i]])());
+          let file = require(readPath + [files[i]]);
+          if(typeof file === "function") {
+            loaded_details.set(files[i], file());
+          }
+          else {
+            loaded_details.set(files[i], file);
+          }
         }
       }
       resolve();

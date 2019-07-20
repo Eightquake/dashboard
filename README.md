@@ -9,4 +9,4 @@ Have a look at my [Trello board](https://trello.com/b/sCPiCzS1) to see what I am
 
 Any questions or comments? Use [kontakt@victordavidsson.se](mailto:kontakt@victordavidsson.se)
 
-Run `npm install` after you have cloned this repo. Everything depends on the basedir being correct for your system.
+Run `npm install` after you have cloned this repo. The node_modules folder is not committed to the repo.

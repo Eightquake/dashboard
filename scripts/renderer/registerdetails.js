@@ -8,7 +8,7 @@
   */
 
 let fs = require("fs");
-let readPath = global.__basedir + "/modules/details/";
+let readPath = __basedir + "/modules/details/";
 
 let jsonRegex = /\.json$/gi;
 let jsRegex = /\.js$/gi;

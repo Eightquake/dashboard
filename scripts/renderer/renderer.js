@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 /**
   * The renderer process. It registers some global variables and on document load it starts the chain of functions that is needed to make the app work.
   * @category Renderer
@@ -6,14 +8,13 @@
   *
   */
 
+let path = require('path');
 /**
-  * Import the settings.json and add the basedir as a global. Maybe this could be done in another way? Let me know, as this solution is a bit cumbersome
+  * __basedir is a global that points to the base directory of the project.
   * @category Renderer
   * @global
   */
-const { basedir } = require("../../settings.json");
-global.__basedir = basedir;
-
+__basedir = path.resolve(__dirname, "..", "..");
 /**
   * Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule something it should use this.
   * @see {@link https://github.com/node-schedule} on how to use it.
@@ -29,27 +30,27 @@ global.schedule = require('node-schedule');
   * @category Renderer
   * @global
   */
-global.problem = require(global.__basedir + "/scripts/renderer/problemHandler.js");
+global.problem = require(__basedir + "/scripts/renderer/problemHandler.js");
 
 /*
   * My plan was for every plugin having to use this settings as a way to save their settings, and then removing the access to localStorage.
   * This would prevent plugins being able to snoop on eachother and stuff like that, but it's not implemented yet and I don't know when I will fix it.
   * During my commits this variable might change from global to local back and forth.
   */
-let settings = require(global.__basedir + "/scripts/renderer/settings.js");
+let settings = require(__basedir + "/scripts/renderer/settings.js");
 
 /**
   * Code that is used to initialize everything about the grid. fillGrid creates all of the needed elements in the grid and initGrid starts Packery and everything else needed for Packery to work
   */
-const fillGrid = require(global.__basedir + "/scripts/renderer/fillGrid.js");
-const initGrid = require(global.__basedir + "/scripts/renderer/initGrid.js");
+const fillGrid = require(__basedir + "/scripts/renderer/fillGrid.js");
+const initGrid = require(__basedir + "/scripts/renderer/initGrid.js");
 
 /**
   * Plugins are the code that handles strings and does whatever it is supposed to do with it. Plugins will have it's code run over and over.
   * Details register a string or similar to a plugin. A modules code will only be run once.
   */
-const registerdetails = require(global.__basedir + "/scripts/renderer/registerdetails.js");
-const registerplugins = require(global.__basedir + "/scripts/renderer/registerplugins.js");
+const registerdetails = require(__basedir + "/scripts/renderer/registerdetails.js");
+const registerplugins = require(__basedir + "/scripts/renderer/registerplugins.js");
 
 /**
   * On window.onload event we know that the grid is fully ready to be filled and to be made into a Packery grid. onready.js takes care of that.

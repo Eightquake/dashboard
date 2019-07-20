@@ -8,7 +8,7 @@
   */
 
 let fs = require("fs");
-let readPath = global.__basedir + "/modules/plugins/";
+let readPath = __basedir + "/modules/plugins/";
 
 function handler(loaded_plugins) {
   return new Promise(function(resolve) {

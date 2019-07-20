@@ -6,9 +6,8 @@
   *
   */
 
-const settings = require("../../settings.json");
-/* As this main-process file is deep inside folders for readibility, I need a variable that is the base directory of the project */
-global.__basedir = settings.basedir;
+const path = require('path');
+__basedir = path.resolve(__dirname, "..", "..");
 
 /* Require Electron and extract app and BrowserWindow as variables */
 const { app, BrowserWindow } = require("electron");
@@ -32,7 +31,7 @@ function createWindow () {
     }
   });
 
-  win.loadFile(global.__basedir + "/resources/renderer/index.html");
+  win.loadFile(__basedir + "/resources/renderer/index.html");
   win.webContents.openDevTools();
 
   win.on('closed', () => {

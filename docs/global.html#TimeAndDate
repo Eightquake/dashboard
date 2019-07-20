@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: fillGrid</title>
+    <title>JSDoc: TimeAndDate</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -52,15 +52,15 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Plugins</h2><h3>Modules</h3><ul><li><a href="module-TimeAndDate.html">TimeAndDate</a></li></ul><h3>Classes</h3><ul><li><a href="TimeAndDate.html">TimeAndDate</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="global.html#TimeAndDate">TimeAndDate</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Plugins</h2><h3>Modules</h3><ul><li><a href="module-TimeAndDate.html">TimeAndDate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#TimeAndDate">TimeAndDate</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>fillGrid</h1>
+                        <p>Class</p>
+                        <h1>TimeAndDate</h1>
                     </header>
                     
                     
@@ -72,8 +72,7 @@
 
 <header>
     
-        
-            
+        <h2><span class="attribs"><span class="type-signature"></span></span>TimeAndDate<span class="signature">(detail, gridelement)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -82,127 +81,16 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Fills the grid by creating new elements for every detail, and then calling every plugin the detail relies on with references to the grid-item and detail.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Victor Davidsson</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="scripts_renderer_fillGrid.js.html" class="button">View Source</a>
-            <span>
-                <a href="scripts_renderer_fillGrid.js.html">scripts/renderer/fillGrid.js</a>, <a href="scripts_renderer_fillGrid.js.html#line1">line 1</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-    
-    <h4 class="name" id="~fillGrid">
-        
-            
-                <span class='tag'>inner</span>
-            
+    <h4 class="name" id="TimeAndDate">
         
         <span class="code-name">
-            fillGrid<span class="signature">(loaded_details, loaded_plugins)</span><span class="type-signature"> &rarr; {Promise}</span>
+            new TimeAndDate<span class="signature">(detail, gridelement)</span><span class="type-signature"></span>
         </span>
     </h4>
     
@@ -210,7 +98,7 @@
     
     
     <div class="description">
-        <p>The only function in this module. It fills the div.grid with a new div.grid-item for every detail that is loaded and then it calls all of the plugins that the detail needs. It is exported and when called on it returns a promise that runs the code and resolves when it's done.</p>
+        <p>Creates a new time plugin, styles the grid-item and requests a animation frame for updating the text</p>
     </div>
     
 
@@ -248,13 +136,13 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>loaded_details</code></td>
+      <td class="name"><code>detail</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Map</span>
+<span class="param-type">Object</span>
 
 
   
@@ -264,7 +152,7 @@
 
   
 
-  <td class="description last"><p>The Map of all of the loaded details where key is the name of the detail and value is the actual detail</p></td>
+  <td class="description last"><p>The detail object in it's entirety</p></td>
 </tr>
 
 
@@ -273,13 +161,13 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>loaded_plugins</code></td>
+      <td class="name"><code>gridelement</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Map</span>
+<span class="param-type">HTMLELement</span>
 
 
   
@@ -289,7 +177,7 @@
 
   
 
-  <td class="description last"><p>The Map of all of the loaded plugins where key is the name of the plugin and value is what the plugin exports</p></td>
+  <td class="description last"><p>The gridelement created for the detail</p></td>
 </tr>
 
 
@@ -334,9 +222,9 @@
 
     
         <p class="tag-source">
-            <a href="scripts_renderer_fillGrid.js.html" class="button">View Source</a>
+            <a href="modules_plugins_timeclass.js.html" class="button">View Source</a>
             <span>
-                <a href="scripts_renderer_fillGrid.js.html">scripts/renderer/fillGrid.js</a>, <a href="scripts_renderer_fillGrid.js.html#line17">line 17</a>
+                <a href="modules_plugins_timeclass.js.html">modules/plugins/timeclass.js</a>, <a href="modules_plugins_timeclass.js.html#line16">line 16</a>
             </span>
         </p>
     
@@ -359,30 +247,176 @@
 
 
 
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>A promise that will resolve once all of the grid-items have been created and all of the details needed plugins have been called.</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise</span>
 
 
-    </div>
-    
+
 </div>
-
-                
-        </div>
+                </div>
+            </div>
+        
+    
     </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="_update">
+        
+            
+                <span class='tag'>private</span>
+            
+        
+        <span class="code-name">
+            _update<span class="signature">(timestamp)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Updates the text of the grid-item based on the details string. Not exactly private because, as far as I understood it, that is not implemented yet - but this is not supposed to be called by anything else than the requestAnimationFrame callback.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>timestamp</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Double</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The DOMHighResTimeStamp of when the browser starts executing the callback functions. Currently unused.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="modules_plugins_timeclass.js.html" class="button">View Source</a>
+            <span>
+                <a href="modules_plugins_timeclass.js.html">modules/plugins/timeclass.js</a>, <a href="modules_plugins_timeclass.js.html#line31">line 31</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -410,7 +444,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 17:54:44 GMT+0200 (Central European Summer Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 17:45:46 GMT+0200 (Central European Summer Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>

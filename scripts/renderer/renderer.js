@@ -8,6 +8,7 @@
 
 /**
   * Import the settings.json and add the basedir as a global. Maybe this could be done in another way? Let me know, as this solution is a bit cumbersome
+  * @category Renderer
   * @global
   */
 const { basedir } = require("../../settings.json");
@@ -16,6 +17,7 @@ global.__basedir = basedir;
 /**
   * Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule something it should use this.
   * @see {@link https://github.com/node-schedule} on how to use it.
+  * @category Renderer
   * @global
   */
 global.schedule = require('node-schedule');
@@ -24,6 +26,7 @@ global.schedule = require('node-schedule');
   * Error handler script, that any code can emit an event on. When an event error, warn, or info is emitted a popup will be shown to the user.
   * All scripts should use this to communicate with the user, instead of using the console or similar.
   * @see {@link module:problemHandler} for more information.
+  * @category Renderer
   * @global
   */
 global.problem = require(global.__basedir + "/scripts/renderer/problemHandler.js");

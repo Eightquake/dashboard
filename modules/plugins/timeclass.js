@@ -6,7 +6,7 @@
   */
 
 
-class pluginTime {
+class TimeAndDate {
   /**
     * Creates a new time plugin, styles the grid-item and requests a animation frame for updating the text
     * @param {Object} detail - The detail object in it's entirety
@@ -24,8 +24,8 @@ class pluginTime {
   }
   /**
     * Updates the text of the grid-item based on the details string. Not exactly private because, as far as I understood it, that is not implemented yet - but this is not supposed to be called by anything else than the requestAnimationFrame callback.
-    * @param {Double} timestamp - The DOMHighResTimeStamp of when the browser starts executing the callback functions. Currently unused.
     * @private
+    * @param {Double} timestamp - The DOMHighResTimeStamp of when the browser starts executing the callback functions. Currently unused.
     */
   _update() {
     /* Same here, it's important to bind the context */
@@ -55,5 +55,5 @@ class pluginTime {
 /* Exports the entire class. This way the code can create a new object from this class everytime it is needed */
 module.exports = {
   type: "class",
-  class: pluginTime,
+  class: TimeAndDate,
 }

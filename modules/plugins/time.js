@@ -2,7 +2,7 @@
   * A simple module that displays the time.
   * Can only handle one detail at a time - I think this is a limitation to node-schedule
   * @category Plugins
-  * @module pluginTime
+  * @module TimeAndDate
   * @author Victor Davidsson
   * @version 0.5.0
   */
@@ -12,11 +12,17 @@ let detail, divelement;
 let fullDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let fullMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+
+/**
+  * The init function of this module. It saves the detail from the arguments, creates a new div in the grid-item and requests a animation frame to update the text.
+  * @function
+  * @public
+  * @param {Object} detailArg - The detail object in it's entirety
+  * @param {HTMLElement} gridelementArg - The grid-item created for the detail
+  */
 function handler(detailArg, gridelementArg) {
   detail = detailArg;
-
   divelement = document.createElement("div");
-  update();
 
   gridelementArg.style = detail.style;
   gridelementArg.appendChild(divelement);
@@ -24,6 +30,12 @@ function handler(detailArg, gridelementArg) {
   window.requestAnimationFrame(update);
 }
 
+/**
+  * Updates the text of the div in the grid-item and requests a animation frame to update it next time.
+  * @function
+  * @private
+  * @param {Double} timestamp - The DOMHighResTimeStamp of when the browser starts executing the callback functions. Currently unused.
+  */
 function update() {
   window.requestAnimationFrame(update);
   let date = new Date();

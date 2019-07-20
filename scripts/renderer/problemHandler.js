@@ -36,7 +36,7 @@ process.on("uncaughtException", (err) => {
 });
 
 /**
-  * Error event, when this is emitted on the {@link global#problem} EventEmitter it will create a red popup with a critical-warning symbol
+  * Error event, when this is emitted on the {@link problem} EventEmitter it will create a red popup with a critical-warning symbol
   * @event error
   */
 problemHandler.on("error", (errorString) => {
@@ -44,7 +44,7 @@ problemHandler.on("error", (errorString) => {
 });
 
 /**
-  * Warning event, when this is emitted on the {@link global#problem} EventEmitter it will create a yellow popup with a warning symbol
+  * Warning event, when this is emitted on the {@link problem} EventEmitter it will create a yellow popup with a warning symbol
   * @event warn
   */
 problemHandler.on("warn", (warnString) => {
@@ -52,7 +52,7 @@ problemHandler.on("warn", (warnString) => {
 });
 
 /**
-  * Information event, when this is emitted on the {@link global#problem} EventEmitter it  will create a grey popup with a exclamation point as a symbol
+  * Information event, when this is emitted on the {@link problem} EventEmitter it  will create a grey popup with a exclamation point as a symbol
   * @event info
   */
 problemHandler.on("info", (infoString) => {

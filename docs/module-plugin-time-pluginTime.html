@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: pluginTime</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: pluginTime</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-plugin-time.html">plugin-time</a>~</span>pluginTime<span class="signature">(detail, gridelement)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="pluginTime"><span class="type-signature"></span>new pluginTime<span class="signature">(detail, gridelement)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Creates a new time plugin, styles the grid-item and requests a animation frame for updating the text
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>detail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The detail object in it's entirety</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>gridelement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLELement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The gridelement created for the detail</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_plugins_timeclass.js.html">modules/plugins/timeclass.js</a>, <a href="modules_plugins_timeclass.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_update"><span class="type-signature">(private) </span>_update<span class="signature">(timestamp)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Updates the text of the grid-item based on the details string. Not exactly private as far as I understood it that is not implemented yet - but this is not supposed to be called by anything else than the requestAnimationFrame callback.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timestamp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Double</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The DOMHighResTimeStamp of when the browser starts executing the callback functions. Currently unused.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_plugins_timeclass.js.html">modules/plugins/timeclass.js</a>, <a href="modules_plugins_timeclass.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-main.html">main</a></li><li><a href="module-plugin-time.html">plugin-time</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Classes</h3><ul><li><a href="module-plugin-time-pluginTime.html">pluginTime</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 15:58:14 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

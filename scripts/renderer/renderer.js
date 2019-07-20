@@ -22,7 +22,7 @@ global.schedule = require('node-schedule');
 /**
   * Error handler script, that any code can emit an event on. When an event error, warn, or info is emitted a popup will be shown to the user.
   * All scripts should use this to communicate with the user, instead of using the console or similar.
-  * @see {@link problemHandler} for more information.
+  * @see {@link module:problemHandler} for more information.
   * @global
   */
 global.problem = require(global.__basedir + "/scripts/renderer/problemHandler.js");

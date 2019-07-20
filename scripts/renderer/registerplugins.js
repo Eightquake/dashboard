@@ -14,7 +14,7 @@ function handler(loaded_plugins) {
     fs.readdir(readPath, function(err, files) {
       for (let i = 0; i < files.length; i++) {
         let file = require(readPath + files[i]);
-        if(file.type == "class") {
+        if(file.type == "class" || file.type == "module") {
           loaded_plugins.set(files[i], file);
         }
       }

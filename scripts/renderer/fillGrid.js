@@ -33,9 +33,13 @@ function fillGrid(loaded_details, loaded_plugins, created_plugins) {
         if(loaded_plugins.has(pluginName)) {
           if(loaded_plugins.get(pluginName).type == "class") {
             let Plugin = loaded_plugins.get(pluginName).class;
-            created_plugins.push(new Plugin(detail, newGriditem));
+            /* Create a new object of the Plugin, calling the constructor with the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
+            created_plugins.push(new Plugin(detail, newGriditem, name));
+          }
+          else if (loaded_plugins.get(pluginName).type == "module") {
+            let plugin = loaded_plugins.get(pluginName);
             /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
-            //plugin.handler(detail, newGriditem, name);
+            plugin.init(detail, newGriditem, name);
           }
         }
         else {

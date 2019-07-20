@@ -1,7 +1,7 @@
 /**
   * A simple module that displays the time.
   * Can only handle one detail at a time - I think this is a limitation to node-schedule
-  * @module plugin-time
+  * @module pluginTime
   * @author Victor Davidsson
   * @version 0.5.0
   */
@@ -20,10 +20,11 @@ function handler(detailArg, gridelementArg) {
   gridelementArg.style = detail.style;
   gridelementArg.appendChild(divelement);
 
-  global.schedule.scheduleJob(detail.settings.update_interval, update);
+  window.requestAnimationFrame(update);
 }
 
 function update() {
+  window.requestAnimationFrame(update);
   let date = new Date();
   /* I dont quite like this solution of chaining a lot of replace-functions. Hopefully I will improve this sometime */
   divelement.innerText = detail.string
@@ -43,8 +44,7 @@ function update() {
 }
 
 /* Exports an object with everything needed for the plugin to function. */
-module.exports = function () {
-  return {
-    handler: handler
-  }
+module.exports = {
+  type: "module",
+  init: handler,
 }

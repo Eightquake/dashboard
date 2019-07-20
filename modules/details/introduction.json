@@ -1,0 +1,7 @@
+{
+  "html": "<h1 style='text-align:center;'>Hello and welcome to my Dashboard project!</h1><br><p style='padding:40px;'>If you just installed or cloned this project, then this introduction is probably the only thing on the dashboard right now.<br>But don't worry, read the documentation and install some plugins and you'll be ready in no time!</p>",
+  "date": "Sat Jul 20 2019 19:16:58 GMT+0200 (Central European Summer Time)",
+  "settings": {
+    "used_plugins": ["introductory.js"]
+  }
+}

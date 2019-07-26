@@ -22,9 +22,11 @@ function fillGrid(loaded_details, loaded_plugins, created_plugins) {
     let theme = localStorage.getItem("settings-theme");
 
     /* Loop trough the map loaded_details and save the key as variable name and value as detail */
-    for(let [name, detail] of loaded_details) {
+    for(let [fileName, detail] of loaded_details) {
       /* Create a new div to be used as a grid item. */
       let newGriditem = document.createElement("div");
+      let name = fileName.replace(/\.(.*)$/g, "");
+      newGriditem.id = name;
       newGriditem.classList.add("grid-item", name, `${theme}-theme`);
       newGriditem.dataset.itemId = ++count;
 

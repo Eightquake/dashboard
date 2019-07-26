@@ -1,3 +1,80 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOiCnqEu92Fr1Mu51QrEzAdKg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TjASc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Italic'), local('Roboto-Italic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOkCnqEu92Fr1Mu51xIIzc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51S7ACc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TzBic6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v20/KFOjCnqEu92Fr1Mu51TLBCc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v20/KFOkCnqEu92Fr1MmgVxIIzc.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmYUtfBBc9.ttf) format('truetype');
+}
+* {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.2;
+  vertical-align: middle;
+}
 @keyframes problem-slidein {
   0% {
     transform: translateX(103%);
@@ -23,15 +100,15 @@ html {
   margin: 0;
 }
 body {
-  font-family: Tahoma;
   margin: 24px 0 0 0;
+  font-weight: 300;
 }
 body.dark-theme {
   background-color: hsl(0, 0%, 20%);
   color: #FFF;
 }
 body.light-theme {
-  background-color: hsl(0, 0%, 80%);
+  background-color: hsl(0, 0%, 84%);
   color: #000;
 }
 .grid {
@@ -51,7 +128,7 @@ body.light-theme {
   background: #adadad;
 }
 .grid-item.light-theme {
-  background: #ebebeb;
+  background: #FFF;
 }
 .problem-popup {
   position: fixed;
@@ -118,7 +195,7 @@ body.light-theme {
   color: #FFF;
 }
 .settings.light-theme {
-  background-color: hsl(0, 0%, 80%);
+  background-color: hsl(0, 0%, 84%);
   color: #000;
 }
 .settings .settings-exit {
@@ -140,7 +217,7 @@ body.light-theme {
   border-right: solid 1px #adadad;
 }
 .settings-categories.light-theme {
-  border-right: solid 1px #ebebeb;
+  border-right: solid 1px #efefef;
 }
 .settings-categories a {
   float: left;
@@ -165,7 +242,7 @@ body.light-theme {
   border-bottom: 1px solid #adadad;
 }
 .settings-list .setting.light-theme {
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid #efefef;
 }
 .settings-list label {
   padding: 5px;
@@ -185,7 +262,7 @@ body.light-theme {
   background-color: #141414;
 }
 #window-decoration.light-theme {
-  background-color: #525252;
+  background-color: #565656;
 }
 #title {
   line-height: 24px;
@@ -212,7 +289,7 @@ body.light-theme {
   background-color: #141414;
 }
 #buttons button.light-theme {
-  background-color: #525252;
+  background-color: #565656;
 }
 #buttons #settings {
   margin-right: 30px;
@@ -224,7 +301,7 @@ body.light-theme {
   background-color: #222222;
 }
 #buttons button.dark-theme:hover {
-  background-color: #888888;
+  background-color: #8f8f8f;
 }
 #buttons #close:hover {
   background-color: #F54242;

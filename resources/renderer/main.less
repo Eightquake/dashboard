@@ -1,7 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
+
+* { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
+
 @dark-backgroundColor: hsl(0, 0%, 20%);
 @dark-accentColor: hardlight(@dark-backgroundColor, #CCCCCC);
 
-@light-backgroundColor: hsl(0, 0%, 80%);
+@light-backgroundColor: hsl(0, 0%, 84%);
 @light-accentColor: hardlight(@light-backgroundColor, #CCCCCC);
 
 @keyframes problem-slidein {
@@ -30,8 +34,8 @@ html {
   margin:0;
 }
 body {
-  font-family:Tahoma;
   margin:24px 0 0 0;
+  font-weight:300;
 }
   body.dark-theme {
     background-color: @dark-backgroundColor;
@@ -62,7 +66,7 @@ body {
     background: @dark-accentColor;
   }
   .grid-item.light-theme {
-    background: @light-accentColor;
+    background: #FFF;
   }
 .problem-popup {
   position:fixed;

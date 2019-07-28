@@ -10,8 +10,8 @@
 let fs = require("fs");
 let readPath = __basedir + "/modules/details/";
 
-let jsonRegex = /\.json$/gi;
-let jsRegex = /\.js$/gi;
+let jsonRegex = /\.json$/i;
+let jsRegex = /\.js$/i;
 
 function handler(loaded_details) {
   return new Promise(function(resolve) {

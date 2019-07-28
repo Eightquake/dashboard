@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-
 /**
   * The renderer process. It registers some global variables and on document load it starts the chain of functions that is needed to make the app work.
   * @category Renderer

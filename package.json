@@ -27,6 +27,7 @@
   "dependencies": {
     "draggabilly": "^2.2.0",
     "events": "^3.0.0",
+    "feedparser": "^2.2.9",
     "jquery": "^3.4.1",
     "jquery-bridget": "^2.0.1",
     "node-schedule": "^1.3.2",

@@ -190,15 +190,15 @@ body {
 }
 
 #window-decoration {
- -webkit-app-region: drag;
- height: 24px;
- width:100%;
- padding:0;
- margin:0;
- position:fixed;
- top:0;
- left:0;
- cursor:grab;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  width:100%;
+  padding:0;
+  margin:0;
+  position:fixed;
+  top:0;
+  left:0;
+  cursor:grab;
 }
 #window-decoration.dark-theme {
   background-color:hardlight(@dark-backgroundColor, #333333);
@@ -212,6 +212,8 @@ body {
   color:#666;
   font-weight:bold;
   float:left;
+  -webkit-app-region: no-drag;
+  text-decoration:none;
 }
 #buttons {
  -webkit-app-region: no-drag;

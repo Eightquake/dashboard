@@ -247,8 +247,8 @@ body.light-theme {
   padding: 5px;
 }
 #window-decoration {
+  -webkit-user-select: none;
   -webkit-app-region: drag;
-  height: 24px;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -269,6 +269,8 @@ body.light-theme {
   color: #666;
   font-weight: bold;
   float: left;
+  -webkit-app-region: no-drag;
+  text-decoration: none;
 }
 #buttons {
   -webkit-app-region: no-drag;

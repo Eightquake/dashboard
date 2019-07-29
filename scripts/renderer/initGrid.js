@@ -86,8 +86,16 @@ function initGrid() {
       initLayout: false
     });
     /* Make every grid-item, the items added by fillGrid, draggable using Draggabilly */
-    $grid.find('.grid-item').each( function( i, gridItem ) {
-      let draggie = new Draggabilly( gridItem );
+    $grid.find('.grid-item').each( function(i, gridItem ) {
+      let draggie;
+      if(gridItem.innerHTML.indexOf("drag-handle") != -1) {
+        draggie = new Draggabilly(gridItem, {
+          handle: ".drag-handle"
+        });
+      }
+      else {
+        draggie = new Draggabilly(gridItem);
+      }
       $grid.packery( 'bindDraggabillyEvents', draggie );
     });
     // get saved dragged positions

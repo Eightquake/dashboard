@@ -18,7 +18,7 @@ function createPopup(code, problem, string) {
   let popupList = document.querySelector(".problem-popup");
 
   let popup = document.createElement("li");
-  popup.innerHTML = `<h3><i class='fas ${icons[code]} popup-icon'></i>${problem}:</h3><p>${string}</p>`;
+  popup.innerHTML = `<div class="popup-header"><i class='fas ${icons[code]} popup-icon'></i><h3>${problem}:</h3></div><p>${string}</p>`;
   popup.classList.add(`problem-${code}`, "problem-animation-run");
 
   let exit = document.createElement("i");

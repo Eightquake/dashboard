@@ -62,8 +62,9 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
     }
     else {
       /* There is no element but there is a reference to it in the localstorage. Most likely the detail got removed, so let's remove the reference to it */
-      this.splice(positions.indexOf(itemPosition), 1);
+      positions.splice(positions.indexOf(itemPosition), 1);
       localStorage.setItem('dragPositions', JSON.stringify(positions));
+      return;
     }
   }, this );
   this.shiftLayout();

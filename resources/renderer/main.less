@@ -192,6 +192,7 @@ body {
 #window-decoration {
   -webkit-user-select: none;
   -webkit-app-region: drag;
+  box-shadow:0px 1px 5px #999;
   width:100%;
   padding:0;
   margin:0;
@@ -204,7 +205,7 @@ body {
   background-color:hardlight(@dark-backgroundColor, #333333);
 }
 #window-decoration.light-theme {
-  background-color:hardlight(@light-backgroundColor, #333333);
+  background-color:#9BC3E8;
 }
 #title {
   line-height:24px;
@@ -229,11 +230,14 @@ body {
   border:none;
   outline:none;
 }
+#buttons button:nth-last-of-type(1) {
+  margin-right:0;
+}
 #buttons button.dark-theme {
   background-color:hardlight(@dark-backgroundColor, #333333);
 }
 #buttons button.light-theme {
-  background-color:hardlight(@light-backgroundColor, #333333);
+  background-color:#9BC3E8;
 }
 #buttons #settings {
   margin-right:30px;
@@ -245,7 +249,7 @@ body {
   background-color:hardlight(@dark-backgroundColor, #555555);
 }
 #buttons button.dark-theme:hover {
-  background-color:hardlight(@light-backgroundColor, #555555);
+  background-color:hardlight(#9BC3E8, #555555);
 }
 #buttons #close:hover {
   background-color:#F54242;

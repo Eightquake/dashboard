@@ -19,16 +19,38 @@ function handler(loaded_details) {
       for (let i = 0; i < files.length; i++) {
         if(jsonRegex.test(files[i])) {
           /* The file is a JSON-file, as it ends with .json or .JSON. As a JSON-file we can just import it and there's no need to call it */
-          loaded_details.set(files[i], require(readPath + [files[i]]));
+          try {
+            loaded_details.set(files[i], require(readPath + [files[i]]));
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load detail ${files[i]} as a JSON-file.<br>${error}`);
+          }
         }
         else if(jsRegex.test(files[i])) {
           /* The file is a JavaScript-file, as it ends with .js or .JS. We should call the function it hopefully exports */
-          let file = require(readPath + [files[i]]);
+          let file;
+          try {
+            file = require(readPath + [files[i]]);
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load detail ${files[i]} as a js-file.<br>${error}`);
+          }
+
           if(typeof file === "function") {
-            loaded_details.set(files[i], file());
+            try {
+              loaded_details.set(files[i], file());
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save detail ${files[i]} by calling it as a function.<br>${error}`);
+            }
           }
           else {
-            loaded_details.set(files[i], file);
+            try {
+              loaded_details.set(files[i], file);
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save detail ${files[i]} by treating as a object.<br>${error}`);
+            }
           }
         }
       }

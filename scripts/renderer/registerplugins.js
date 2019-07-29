@@ -10,13 +10,31 @@
 let fs = require("fs");
 let readPath = __basedir + "/modules/plugins/";
 
+let jsRegex = /\.js$/i;
+
 function handler(loaded_plugins) {
   return new Promise(function(resolve) {
     fs.readdir(readPath, function(err, files) {
       for (let i = 0; i < files.length; i++) {
-        let file = require(readPath + files[i]);
-        if(file.type == "class" || file.type == "module") {
-          loaded_plugins.set(files[i], file);
+        if(jsRegex.test(files[i])) {
+          let file;
+          try {
+            file = require(readPath + files[i]);
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load plugin ${files[i]}.<br>${error}`);
+          }
+          if(file.type == "class" || file.type == "module") {
+            try {
+              loaded_plugins.set(files[i], file);
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save plugin ${files[i]}.<br>${error}`);
+            }
+          }
+          else {
+            global.problem.emit("warn", `Plugin ${files[i]} does not export a type-property or it isn't one of the supported ones.`);
+          }
         }
       }
       resolve();

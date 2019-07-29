@@ -10,7 +10,7 @@ const path = require('path');
 __basedir = path.resolve(__dirname, "..", "..");
 
 /* Require Electron and extract app and BrowserWindow as variables */
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, shell } = require("electron");
 
 let win;
 
@@ -33,6 +33,8 @@ function createWindow () {
 
   win.loadFile(__basedir + "/resources/renderer/index.html");
   win.webContents.openDevTools();
+  win.webContents.on('will-navigate', handleNewNavigation);
+  win.webContents.on('new-window', handleNewNavigation);
 
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -45,6 +47,13 @@ function createWindow () {
     /* Wait until everything is ready to show. Just makes it neater. */
     win.show();
   })
+}
+
+function handleNewNavigation(e, url) {
+  if(url != e.sender.webContents.getURL()) {
+    e.preventDefault();
+    shell.openExternal(url);
+  }
 }
 
 /* The scrollbar was making a hassle with the Packery grid, luckily Electron has a feature for a scrollbar that's floating. */

@@ -19,12 +19,15 @@ __basedir = path.resolve(__dirname, "..", "..");
 (function() {
   /* Fetch the theme-choice if available, otherwise default to light */
   let themeChoice = localStorage.getItem("settings-theme") || "light";
+  /* Create a new link element, add the correct attributes to it and add it to the head of the document */
   let link = document.createElement('link');
   link.setAttribute('rel', 'stylesheet');
   link.setAttribute('type', 'text/css');
+  /* The theme files are called darktheme.css and lighttheme.css and are in the same folder as the index.html-file */
   link.setAttribute('href', themeChoice + "theme.css");
+  /* Set the classname to something so the code can easily update this when needed, using selector link.theme-choice */
   link.className = "theme-choice";
-  document.getElementsByTagName('head')[0].appendChild(link);
+  document.head.appendChild(link);
 })();
 
 /**

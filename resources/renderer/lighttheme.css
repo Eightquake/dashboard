@@ -1,0 +1,27 @@
+body {
+  background-color: hsl(0, 0%, 84%);
+  color: #999;
+}
+.grid-item {
+  background: #FFF;
+}
+.settings {
+  background-color: hsl(0, 0%, 84%);
+  color: #000;
+}
+.settings-categories {
+  border-right: solid 1px #efefef;
+}
+.settings-list .setting {
+  border-bottom: 1px solid #efefef;
+}
+#window-decoration {
+  background-color: #9BC3E8;
+  box-shadow: 0px 1px 5px #999;
+}
+#buttons button {
+  background-color: #9BC3E8;
+}
+#buttons button:hover {
+  background-color: #67829b;
+}

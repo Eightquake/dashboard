@@ -1,0 +1,52 @@
+body.light-theme {
+  background-color: hsl(0, 0%, 84%);
+  color: #999;
+}
+body.dark-theme {
+  background-color: hsl(0, 0%, 20%);
+  color: #FFF;
+}
+.grid-item.light-theme {
+  background: #FFF;
+}
+.grid-item.dark-theme {
+  background: #adadad;
+}
+.settings.light-theme {
+  background-color: hsl(0, 0%, 84%);
+  color: #000;
+}
+.settings.dark-theme {
+  background-color: hsl(0, 0%, 20%);
+  color: #FFF;
+}
+.settings-categories.light-theme {
+  border-right: solid 1px #efefef;
+}
+.settings-categories.dark-theme {
+  border-right: solid 1px #adadad;
+}
+.settings-list .setting.light-theme {
+  border-bottom: 1px solid #efefef;
+}
+.settings-list .setting.dark-theme {
+  border-bottom: 1px solid #adadad;
+}
+#window-decoration.light-theme {
+  background-color: #9BC3E8;
+}
+#window-decoration.dark-theme {
+  background-color: #141414;
+}
+#buttons button.light-theme {
+  background-color: #9BC3E8;
+}
+#buttons button.dark-theme {
+  background-color: #141414;
+}
+#buttons button.light-theme:hover {
+  background-color: #67829b;
+}
+#buttons button.dark-theme:hover {
+  background-color: #222222;
+}

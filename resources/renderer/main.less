@@ -2,12 +2,6 @@
 
 * { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
 
-@dark-backgroundColor: hsl(0, 0%, 20%);
-@dark-accentColor: hardlight(@dark-backgroundColor, #CCCCCC);
-
-@light-backgroundColor: hsl(0, 0%, 84%);
-@light-accentColor: hardlight(@light-backgroundColor, #CCCCCC);
-
 @keyframes problem-slidein {
   0% {
     transform:translateX(103%);
@@ -37,14 +31,6 @@ body {
   margin:24px 0 0 0;
   font-weight:300;
 }
-  body.dark-theme {
-    background-color: @dark-backgroundColor;
-    color: #FFF;
-  }
-  body.light-theme {
-    background-color: @light-backgroundColor;
-    color:#000;
-  }
 
 .grid {
   margin:36px 0 0 12px;
@@ -52,22 +38,13 @@ body {
 }
 
 .grid-sizer {
-  width: 11%;
+  width: 50px;
 }
 
 .gutter-sizer {
-  width: 1%;
+  width: 12px;
 }
 
-.grid-item {
-  float: left;
-}
-  .grid-item.dark-theme {
-    background: @dark-accentColor;
-  }
-  .grid-item.light-theme {
-    background: #FFF;
-  }
 .problem-popup {
   position:fixed;
   list-style:none;
@@ -131,14 +108,8 @@ body {
   top:24px;
   left:0;
 }
-  .settings.dark-theme {
-    background-color: @dark-backgroundColor;
-    color:#FFF;
-  }
-  .settings.light-theme {
-    background-color: @light-backgroundColor;
-    color:#000;
-  }
+
+
 .settings .settings-exit {
   position:absolute;
   top:1%;
@@ -154,12 +125,8 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-  .settings-categories.dark-theme {
-    border-right:solid 1px @dark-accentColor;
-  }
-  .settings-categories.light-theme {
-    border-right:solid 1px @light-accentColor;
-  }
+
+
 .settings-categories a {
   float:left;
   width:100%;
@@ -180,12 +147,8 @@ body {
   padding-bottom:20px;
   width:calc(100% - 50px);
 }
-  .settings-list .setting.dark-theme {
-    border-bottom:1px solid @dark-accentColor;
-  }
-  .settings-list .setting.light-theme {
-    border-bottom:1px solid @light-accentColor;
-  }
+
+
 .settings-list label {
   padding:5px;
 }
@@ -193,7 +156,6 @@ body {
 #window-decoration {
   -webkit-user-select: none;
   -webkit-app-region: drag;
-  box-shadow:0px 1px 5px #999;
   width:100%;
   padding:0;
   margin:0;
@@ -202,12 +164,7 @@ body {
   left:0;
   cursor:grab;
 }
-#window-decoration.dark-theme {
-  background-color:hardlight(@dark-backgroundColor, #333333);
-}
-#window-decoration.light-theme {
-  background-color:#9BC3E8;
-}
+
 #title {
   line-height:24px;
   margin:0 0 0 10px;
@@ -234,23 +191,12 @@ body {
 #buttons button:nth-last-of-type(1) {
   margin-right:0;
 }
-#buttons button.dark-theme {
-  background-color:hardlight(@dark-backgroundColor, #333333);
-}
-#buttons button.light-theme {
-  background-color:#9BC3E8;
-}
+
 #buttons #settings {
   margin-right:30px;
 }
 #buttons button:hover {
   color:#FFF;
-}
-#buttons button.dark-theme:hover {
-  background-color:hardlight(@dark-backgroundColor, #555555);
-}
-#buttons button.dark-theme:hover {
-  background-color:hardlight(#9BC3E8, #555555);
 }
 #buttons #close:hover {
   background-color:#F54242;

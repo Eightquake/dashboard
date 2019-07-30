@@ -103,32 +103,18 @@ body {
   margin: 24px 0 0 0;
   font-weight: 300;
 }
-body.dark-theme {
-  background-color: hsl(0, 0%, 20%);
-  color: #FFF;
-}
-body.light-theme {
-  background-color: hsl(0, 0%, 84%);
-  color: #000;
-}
 .grid {
   margin: 36px 0 0 12px;
   padding: 0 0 1% 0;
 }
 .grid-sizer {
-  width: 11%;
+  width: 50px;
 }
 .gutter-sizer {
-  width: 1%;
+  width: 12px;
 }
 .grid-item {
-  float: left;
-}
-.grid-item.dark-theme {
-  background: #adadad;
-}
-.grid-item.light-theme {
-  background: #FFF;
+  /*float: left;*/
 }
 .problem-popup {
   position: fixed;
@@ -190,14 +176,6 @@ body.light-theme {
   top: 24px;
   left: 0;
 }
-.settings.dark-theme {
-  background-color: hsl(0, 0%, 20%);
-  color: #FFF;
-}
-.settings.light-theme {
-  background-color: hsl(0, 0%, 84%);
-  color: #000;
-}
 .settings .settings-exit {
   position: absolute;
   top: 1%;
@@ -212,12 +190,6 @@ body.light-theme {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-.settings-categories.dark-theme {
-  border-right: solid 1px #adadad;
-}
-.settings-categories.light-theme {
-  border-right: solid 1px #efefef;
 }
 .settings-categories a {
   float: left;
@@ -238,12 +210,6 @@ body.light-theme {
   padding-bottom: 20px;
   width: calc(100% - 50px);
 }
-.settings-list .setting.dark-theme {
-  border-bottom: 1px solid #adadad;
-}
-.settings-list .setting.light-theme {
-  border-bottom: 1px solid #efefef;
-}
 .settings-list label {
   padding: 5px;
 }
@@ -258,12 +224,6 @@ body.light-theme {
   top: 0;
   left: 0;
   cursor: grab;
-}
-#window-decoration.dark-theme {
-  background-color: #141414;
-}
-#window-decoration.light-theme {
-  background-color: #9BC3E8;
 }
 #title {
   line-height: 24px;
@@ -291,23 +251,11 @@ body.light-theme {
 #buttons button:nth-last-of-type(1) {
   margin-right: 0;
 }
-#buttons button.dark-theme {
-  background-color: #141414;
-}
-#buttons button.light-theme {
-  background-color: #9BC3E8;
-}
 #buttons #settings {
   margin-right: 30px;
 }
 #buttons button:hover {
   color: #FFF;
-}
-#buttons button.dark-theme:hover {
-  background-color: #222222;
-}
-#buttons button.dark-theme:hover {
-  background-color: #67829b;
 }
 #buttons #close:hover {
   background-color: #F54242;

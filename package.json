@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron scripts/main/main.js",
-    "gen-docs": "jsdoc -r -c jsdoc.json"
+    "gen-docs": "jsdoc -r -c jsdoc.json",
+    "gen-css": "lessc ./resources/renderer/main.less ./resources/renderer/main.css && lessc ./resources/renderer/lighttheme.less ./resources/renderer/lighttheme.css && lessc ./resources/renderer/darktheme.less ./resources/renderer/darktheme.css"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   "devDependencies": {
     "better-docs": "^1.1.6",
     "electron": "^5.0.6",
-    "jsdoc": "^3.6.3"
+    "jsdoc": "^3.6.3",
+    "less": "^3.9.0"
   },
   "dependencies": {
     "draggabilly": "^2.2.0",

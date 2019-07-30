@@ -52,20 +52,22 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
   attr = attr || 'id'; // default to id attribute
   this._resetLayout();
   // set item order and horizontal position from saved positions
-  this.items = positions.map( function( itemPosition ) {
+  this.items = positions.filter(function(itemPosition) {
     var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
-    var itemElem = this.element.querySelector( selector );
-    if(itemElem) {
-      var item = this.getItem( itemElem );
-      item.rect.x = itemPosition.x * this.packer.width;
-      return item;
+    if(this.element.querySelector(selector)) {
+      /* Element exists in the grid, returning true so it is included for when the map is called */
+      return true;
     }
     else {
-      /* There is no element but there is a reference to it in the localstorage. Most likely the detail got removed, so let's remove the reference to it */
-      positions.splice(positions.indexOf(itemPosition), 1);
-      localStorage.setItem('dragPositions', JSON.stringify(positions));
-      return;
+      /* Element does not exist but there is a reference to it in localstorage. Let' skip over it for now, maybe it will come back. If it does, it will be added again by the code on line 107 - 112 */
+      return false;
     }
+  }, this).map( function( itemPosition ) {
+    var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
+    var itemElem = this.element.querySelector( selector );
+    var item = this.getItem( itemElem );
+    item.rect.x = itemPosition.x * this.packer.width;
+    return item;
   }, this );
   this.shiftLayout();
 };
@@ -89,7 +91,7 @@ function initGrid() {
     /* Make every grid-item, the items added by fillGrid, draggable using Draggabilly */
     $grid.find('.grid-item').each( function(i, gridItem ) {
       let draggie;
-      if(gridItem.innerHTML.indexOf("drag-handle") != -1) {
+      if(gridItem.querySelector(".drag-handle")) {
         draggie = new Draggabilly(gridItem, {
           handle: ".drag-handle"
         });
@@ -97,17 +99,24 @@ function initGrid() {
       else {
         draggie = new Draggabilly(gridItem);
       }
-      $grid.packery( 'bindDraggabillyEvents', draggie );
+      $grid.packery('bindDraggabillyEvents', draggie);
     });
     // get saved dragged positions
     var initPositions = localStorage.getItem('dragPositions');
+    var parsed = JSON.parse(initPositions);
+    if(initPositions && parsed.length < document.querySelectorAll(".grid-item").length) {
+      /* There is grid-item elements in the grid that is not saved in the layout. Let's add them before restoring the layout! */
+      var positions = $grid.packery('getShiftPositions', 'data-item-id');
+      localStorage.setItem('dragPositions', JSON.stringify(positions));
+      initPositions = JSON.stringify(positions);
+    }
     // init layout with saved positions
-    $grid.packery( 'initShiftLayout', initPositions, 'data-item-id' );
+    $grid.packery('initShiftLayout', initPositions, 'data-item-id');
     // save drag positions on event
-    $grid.on( 'dragItemPositioned', function() {
+    $grid.on('dragItemPositioned', function() {
       // save drag positions
-      var positions = $grid.packery( 'getShiftPositions', 'data-item-id' );
-      localStorage.setItem( 'dragPositions', JSON.stringify( positions ) );
+      var positions = $grid.packery('getShiftPositions', 'data-item-id');
+      localStorage.setItem('dragPositions', JSON.stringify(positions));
     });
     resolve();
   });

@@ -1,25 +1,71 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <title>JSDoc: Source: renderer/initGrid.js</title>
+    <title>JSDoc: renderer/initGrid.js</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
 </head>
 
 <body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: renderer/initGrid.js</h1>
-
-    
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">Electron Dashboard by Victor Davidsson</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Eightquake/dashboard" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#__basedir">__basedir</a></li><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>renderer/initGrid.js</h1>
+                    </header>
+                    
+                    
 
 
 
@@ -28,6 +74,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
   * Initializes the grid and everything that is needed for Packery, Draggabilly to work correctly. Also it restores the last layout if one is found.
+  * @category Renderer
   * @module initGrid
   * @author Victor Davidsson
   *
@@ -79,19 +126,22 @@ Packery.prototype.initShiftLayout = function( positions, attr ) {
   attr = attr || 'id'; // default to id attribute
   this._resetLayout();
   // set item order and horizontal position from saved positions
-  this.items = positions.map( function( itemPosition ) {
+  this.items = positions.filter(function(itemPosition) {
     var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
-    var itemElem = this.element.querySelector( selector );
-    if(itemElem) {
-      var item = this.getItem( itemElem );
-      item.rect.x = itemPosition.x * this.packer.width;
-      return item;
+    if(this.element.querySelector(selector)) {
+      /* Element exists in the grid, returning true so it is included for when the map is called */
+      return true;
     }
     else {
-      /* There is no element but there is a reference to it in the localstorage. Most likely the detail got removed, so let's remove the reference to it */
-      this.splice(positions.indexOf(itemPosition), 1);
-      localStorage.setItem('dragPositions', JSON.stringify(positions));
+      /* Element does not exist but there is a reference to it in localstorage. Let' skip over it for now, maybe it will come back. If it does, it will be added again by the code on line 107 - 112 */
+      return false;
     }
+  }, this).map( function( itemPosition ) {
+    var selector = '[' + attr + '="' + itemPosition.attr  + '"]'
+    var itemElem = this.element.querySelector( selector );
+    var item = this.getItem( itemElem );
+    item.rect.x = itemPosition.x * this.packer.width;
+    return item;
   }, this );
   this.shiftLayout();
 };
@@ -113,19 +163,34 @@ function initGrid() {
       initLayout: false
     });
     /* Make every grid-item, the items added by fillGrid, draggable using Draggabilly */
-    $grid.find('.grid-item').each( function( i, gridItem ) {
-      let draggie = new Draggabilly( gridItem );
-      $grid.packery( 'bindDraggabillyEvents', draggie );
+    $grid.find('.grid-item').each( function(i, gridItem ) {
+      let draggie;
+      if(gridItem.querySelector(".drag-handle")) {
+        draggie = new Draggabilly(gridItem, {
+          handle: ".drag-handle"
+        });
+      }
+      else {
+        draggie = new Draggabilly(gridItem);
+      }
+      $grid.packery('bindDraggabillyEvents', draggie);
     });
     // get saved dragged positions
     var initPositions = localStorage.getItem('dragPositions');
+    var parsed = JSON.parse(initPositions);
+    if(initPositions &amp;&amp; parsed.length &lt; document.querySelectorAll(".grid-item").length) {
+      /* There is grid-item elements in the grid that is not saved in the layout. Let's add them before restoring the layout! */
+      var positions = $grid.packery('getShiftPositions', 'data-item-id');
+      localStorage.setItem('dragPositions', JSON.stringify(positions));
+      initPositions = JSON.stringify(positions);
+    }
     // init layout with saved positions
-    $grid.packery( 'initShiftLayout', initPositions, 'data-item-id' );
+    $grid.packery('initShiftLayout', initPositions, 'data-item-id');
     // save drag positions on event
-    $grid.on( 'dragItemPositioned', function() {
+    $grid.on('dragItemPositioned', function() {
       // save drag positions
-      var positions = $grid.packery( 'getShiftPositions', 'data-item-id' );
-      localStorage.setItem( 'dragPositions', JSON.stringify( positions ) );
+      var positions = $grid.packery('getShiftPositions', 'data-item-id');
+      localStorage.setItem('dragPositions', JSON.stringify(positions));
     });
     resolve();
   });
@@ -139,19 +204,23 @@ module.exports = initGrid;
 
 
 
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-main.html">main</a></li><li><a href="module-plugin-time.html">plugin-time</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warning">warning</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Jul 19 2019 13:37:44 GMT+0200 (Central European Summer Time)
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Jul 30 2019 14:41:12 GMT+0200 (Central European Summer Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
 </footer>
 
 <script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
 <script src="scripts/linenumber.js"> </script>
 </body>
 </html>

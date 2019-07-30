@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: scripts/renderer/registerdetails.js</title>
+    <title>JSDoc: renderer/registerdetails.js</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -54,7 +54,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Plugins</h2><h3>Modules</h3><ul><li><a href="module-TimeAndDate.html">TimeAndDate</a></li></ul><h3>Classes</h3><ul><li><a href="TimeAndDate.html">TimeAndDate</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#__basedir">__basedir</a></li><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#__basedir">__basedir</a></li><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>scripts/renderer/registerdetails.js</h1>
+                        <h1>renderer/registerdetails.js</h1>
                     </header>
                     
                     
@@ -84,8 +84,8 @@
 let fs = require("fs");
 let readPath = __basedir + "/modules/details/";
 
-let jsonRegex = /\.json$/gi;
-let jsRegex = /\.js$/gi;
+let jsonRegex = /\.json$/i;
+let jsRegex = /\.js$/i;
 
 function handler(loaded_details) {
   return new Promise(function(resolve) {
@@ -93,16 +93,38 @@ function handler(loaded_details) {
       for (let i = 0; i &lt; files.length; i++) {
         if(jsonRegex.test(files[i])) {
           /* The file is a JSON-file, as it ends with .json or .JSON. As a JSON-file we can just import it and there's no need to call it */
-          loaded_details.set(files[i], require(readPath + [files[i]]));
+          try {
+            loaded_details.set(files[i], require(readPath + [files[i]]));
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load detail ${files[i]} as a JSON-file.&lt;br>${error}`);
+          }
         }
         else if(jsRegex.test(files[i])) {
           /* The file is a JavaScript-file, as it ends with .js or .JS. We should call the function it hopefully exports */
-          let file = require(readPath + [files[i]]);
+          let file;
+          try {
+            file = require(readPath + [files[i]]);
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load detail ${files[i]} as a js-file.&lt;br>${error}`);
+          }
+
           if(typeof file === "function") {
-            loaded_details.set(files[i], file());
+            try {
+              loaded_details.set(files[i], file());
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save detail ${files[i]} by calling it as a function.&lt;br>${error}`);
+            }
           }
           else {
-            loaded_details.set(files[i], file);
+            try {
+              loaded_details.set(files[i], file);
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save detail ${files[i]} by treating as a object.&lt;br>${error}`);
+            }
           }
         }
       }
@@ -126,7 +148,7 @@ module.exports = handler;
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 18:32:32 GMT+0200 (Central European Summer Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Jul 30 2019 14:41:12 GMT+0200 (Central European Summer Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>

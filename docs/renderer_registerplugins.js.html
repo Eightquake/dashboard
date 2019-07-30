@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: pluginTime</title>
+    <title>JSDoc: renderer/registerplugins.js</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -52,153 +54,72 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Plugins</h2><h3>Modules</h3><ul><li><a href="module-pluginTime.html">pluginTime</a></li></ul><h3>Classes</h3><ul><li><a href="pluginTime.html">pluginTime</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Main</h2><h3>Modules</h3><ul><li><a href="module-main.html">main</a></li></ul></div><div class="category"><h2>Renderer</h2><h3>Modules</h3><ul><li><a href="module-fillGrid.html">fillGrid</a></li><li><a href="module-initGrid.html">initGrid</a></li><li><a href="module-problemHandler.html">problemHandler</a></li><li><a href="module-registerdetails.html">registerdetails</a></li><li><a href="module-registerplugins.html">registerplugins</a></li><li><a href="module-renderer.html">renderer</a></li><li><a href="module-settings.html">settings</a></li></ul><h3>Events</h3><ul><li><a href="module-problemHandler.html#~event:error">error</a></li><li><a href="module-problemHandler.html#~event:info">info</a></li><li><a href="module-problemHandler.html#~event:warn">warn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#__basedir">__basedir</a></li><li><a href="global.html#problem">problem</a></li><li><a href="global.html#schedule">schedule</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>pluginTime</h1>
+                        <p>Source</p>
+                        <h1>renderer/registerplugins.js</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+  * Reads the directory for plugins and uses require to add it into the code. While this is a convenient way to do it, really bad things could happen if a rouge file is added here or similar, as this just reads and executes all of the code it finds
+  * @todo Fix so that this only requires trusted files, maybe by requiring the user to install them through the app and storing the name in localstorage?
+  * @category Renderer
+  * @module registerplugins
+  * @author Victor Davidsson
+  *
+  */
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>A simple module that displays the time.
-Can only handle one detail at a time - I think this is a limitation to node-schedule</p></div>
-        
+let fs = require("fs");
+let readPath = __basedir + "/modules/plugins/";
 
-        
-            
+let jsRegex = /\.js$/i;
 
+function handler(loaded_plugins) {
+  return new Promise(function(resolve) {
+    fs.readdir(readPath, function(err, files) {
+      for (let i = 0; i &lt; files.length; i++) {
+        if(jsRegex.test(files[i])) {
+          let file;
+          try {
+            file = require(readPath + files[i]);
+          }
+          catch(error) {
+            global.problem.emit("error", `An error occured while trying to load plugin ${files[i]}.&lt;br>${error}`);
+          }
+          if(file.type == "class" || file.type == "module") {
+            try {
+              loaded_plugins.set(files[i], file);
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to save plugin ${files[i]}.&lt;br>${error}`);
+            }
+          }
+          else {
+            global.problem.emit("warn", `Plugin ${files[i]} does not export a type-property or it isn't one of the supported ones.`);
+          }
+        }
+      }
+      resolve();
+    });
+  });
+}
 
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>0.5.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Victor Davidsson</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="modules_plugins_time.js.html" class="button">View Source</a>
-            <span>
-                <a href="modules_plugins_time.js.html">modules/plugins/time.js</a>, <a href="modules_plugins_time.js.html#line1">line 1</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+module.exports = handler;
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -210,7 +131,7 @@ Can only handle one detail at a time - I think this is a limitation to node-sche
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Jul 20 2019 17:14:27 GMT+0200 (Central European Summer Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Jul 30 2019 14:41:12 GMT+0200 (Central European Summer Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>

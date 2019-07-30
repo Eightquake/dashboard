@@ -53,27 +53,17 @@ function initSettings() {
       /* Only update if the choice of theme has actually been changed */
       if(choice != setting) {
         localStorage.setItem("settings-theme", choice);
-        document.querySelectorAll(`.${setting}-theme`).forEach(function(element) {
-          element.classList.replace(`${setting}-theme`, `${choice}-theme`);
-        });
+        document.querySelector("link.theme-choice").href = choice + "theme.css";
+        document.body.classList.replace(setting, choice);
       }
     }
 
     /* At startup, if the theme is set, set the correct radio button as checked in settings and if the theme is light update the entire document */
-    if(localStorage.getItem("settings-theme")) {
-      let settingsTheme = localStorage.getItem("settings-theme");
-      document.querySelector(`input.theme-choice[value=${settingsTheme}]`).checked = true;
-      if(settingsTheme != "dark") {
-        document.querySelectorAll(".dark-theme").forEach(function(element) {
-          element.classList.replace("dark-theme", "light-theme");
-        });
-      }
-    }
-    /* Or, if there is no theme stored in localstorage, just default it to dark */
-    else {
-      document.querySelector("input[value=dark]").checked = true;
-      localStorage.setItem("settings-theme", "dark");
-    }
+
+    let settingsTheme = localStorage.getItem("settings-theme") || "light";
+    document.querySelector(`input.theme-choice[value=${settingsTheme}]`).checked = true;
+    document.body.className = settingsTheme;
+
     resolve();
   });
 }

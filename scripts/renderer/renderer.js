@@ -14,6 +14,19 @@ let path = require('path');
   * @global
   */
 __basedir = path.resolve(__dirname, "..", "..");
+
+/* Init the theme before doing anything else */
+(function() {
+  /* Fetch the theme-choice if available, otherwise default to light */
+  let themeChoice = localStorage.getItem("settings-theme") || "light";
+  let link = document.createElement('link');
+  link.setAttribute('rel', 'stylesheet');
+  link.setAttribute('type', 'text/css');
+  link.setAttribute('href', themeChoice + "theme.css");
+  link.className = "theme-choice";
+  document.getElementsByTagName('head')[0].appendChild(link);
+})();
+
 /**
   * Scheduler module, works great and handles all of the scheduling. When a plugin needs to schedule something it should use this.
   * @see {@link https://github.com/node-schedule} on how to use it.

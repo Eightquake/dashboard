@@ -16,33 +16,40 @@
   */
 function fillGrid(loaded_details, loaded_plugins, created_plugins) {
   return new Promise(function(resolve) {
-    /* count is used for Packery to restore the last layout, every grid-element gets its own id starting from 1 and going up. If count is 0 there is no detail at all. */
-    let count = 0;
-    /* As the init function of settings.js have been run we know that the localStorage will have the theme-choice, which is needed when creating the grid-items. */
-    let theme = localStorage.getItem("settings-theme");
-
     /* Loop trough the map loaded_details and save the key as variable name and value as detail */
     for(let [fileName, detail] of loaded_details) {
       /* Create a new div to be used as a grid item. */
       let newGriditem = document.createElement("div");
+      /* Using fileName as a classname made some trouble when the file extension was included. Therefore, remove the group that starts with a dot and any number of characters then end-of-string. This should only capture any file-extension */
       let name = fileName.replace(/\.(.*)$/g, "");
       newGriditem.id = name;
-      newGriditem.classList.add("grid-item", name, `${theme}-theme`);
-      newGriditem.dataset.itemId = ++count;
+      newGriditem.classList.add("grid-item", name);
+      /* data-item-id is used for Packery to restore the last layout, every grid-element gets its own id that is the details filename excluding the extension. */
+      newGriditem.dataset.itemId = name;
 
       /* Register the detail to every plugin stated */
       for(let pluginName of detail.settings.used_plugins) {
         /* Make sure the plugin actually exists and is loaded */
         if(loaded_plugins.has(pluginName)) {
           if(loaded_plugins.get(pluginName).type == "class") {
-            let Plugin = loaded_plugins.get(pluginName).class;
-            /* Create a new object of the Plugin, calling the constructor with the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
-            created_plugins.push(new Plugin(detail, newGriditem, name));
+            try {
+              let Plugin = loaded_plugins.get(pluginName).class;
+              /* Create a new object of the Plugin, calling the constructor with the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
+              created_plugins.push(new Plugin(detail, newGriditem, name));
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to create plugin ${pluginName} as a Class for detail ${detail}.<br>${error}`);
+            }
           }
           else if (loaded_plugins.get(pluginName).type == "module") {
-            let plugin = loaded_plugins.get(pluginName);
-            /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
-            plugin.init(detail, newGriditem, name);
+            try {
+              let plugin = loaded_plugins.get(pluginName);
+              /* Every plugin gets the detail in it's entirety, and a reference to the specific grid-item div. Optionally it also gets the name of the specific detail */
+              plugin.init(detail, newGriditem, name);
+            }
+            catch(error) {
+              global.problem.emit("error", `An error occured while trying to call plugin ${pluginName} as a module for detail ${detail}.<br>${error}`);
+            }
           }
         }
         else {

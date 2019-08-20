@@ -3,3 +3,5 @@ node_modules/
 
 ## I have my plugins and details in the folders for testing during development, but they shouldn't be committed. Currently, there is only a introduction plugin and detail in the repo that should stay. ##
 modules/
+
+.DS_Store

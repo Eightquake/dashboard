@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+/* CSS items. First bootstrap, then Font Awesome icons, then my own CSS */
+import "bootstrap/dist/css/bootstrap.css";
+import "./resources/renderer/fa-all.min.css";
+import "./resources/renderer/maintheme.css";
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

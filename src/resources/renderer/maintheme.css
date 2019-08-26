@@ -1,0 +1,34 @@
+#window-decoration {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+#title {
+  line-height: 24px;
+  margin: 0 0 0 10px;
+  color: #666;
+  font-weight: 300;
+  float: left;
+  -webkit-app-region: no-drag;
+  text-decoration: none;
+}
+#window-decoration {
+    background-color:#999;
+}
+#buttons {
+  -webkit-app-region: no-drag;
+  float: right;
+  cursor: default;
+}
+#button-group {
+  float: right;
+}
+#button-group #close:hover {
+  background-color: #f54242;
+}

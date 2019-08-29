@@ -1,73 +1,105 @@
-/* Copied from https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/ */
+/**
+ * The main process of Electron. It is in charge of opening the main window and handling when it closes. It uses code from a few different online as I was trying to get Electron and React work with Node integration
+ * @category Main
+ * @module main
+ * @author Victor Davidsson
+ */
 
-const electron = require("electron");
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
-
+/* Require Electron and extract app and BrowserWindow as variables */
+const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const path = require("path");
-const url = require("url");
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow, loadingWindow;
 
-function createWindow() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    autoHideMenuBar: true,
-    frame: false,
-    webPreferences: {
-      nodeIntegration: true
-    }
+const initApp = require("./initApp.js");
+
+let loadedDetails = {},
+  loadedPlugins = {};
+
+function createLoadingWindow() {
+  loadingWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: true
   });
-  
-  // and load the index.html of the app.
-  const startUrl = "http://localhost:3000";
-  /*process.env.ELECTRON_START_URL ||
-    url.format({
-      pathname: path.join(__dirname, "/../build/index.html"),
-      protocol: "file:",
-      slashes: true
-    });*/
-  mainWindow.loadURL(startUrl);
+  loadingWindow.loadFile("@app/public/loading.html");
+  startLoading();
+}
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
-  // Emitted when the window is closed.
-  mainWindow.on("closed", function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
+function startLoading() {
+  initApp(loadedDetails, loadedPlugins).then(() => {
+    loadingWindow.close();
+    createMainWindow();
   });
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+/**
+ * The function that will create and open the window when it's time.
+ * @private
+ */
+function createMainWindow() {
+  mainWindow = new BrowserWindow({
+    width: 1280,
+    height: 720,
+    show: false,
+    autoHideMenuBar: true,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: false
+    }
+  });
 
-// Quit when all windows are closed.
+  /* And load the webpage from the React webpack server, okay for development but for production. In production the app should be built and loaded straight from the file */
+  let loadURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "@app/build/index.html";
+  mainWindow.loadURL(loadURL);
+
+  /* Open the DevTools. */
+  mainWindow.webContents.openDevTools();
+
+  /* Bind events so that when the window is trying to navigate, call the functin that prevents it and opens it in an external browser instead */
+  mainWindow.webContents.on("will-navigate", handleNewNavigation);
+  mainWindow.webContents.on("new-window", handleNewNavigation);
+
+  mainWindow.on("closed", function() {
+    mainWindow = null;
+  });
+  mainWindow.once("ready-to-show", () => {
+    /* Wait until everything is ready to show. Just makes it neater. */
+    mainWindow.show();
+  });
+}
+
+function handleNewNavigation(e, url) {
+  if (url !== e.sender.webContents.getURL()) {
+    e.preventDefault();
+    shell.openExternal(url);
+  }
+}
+
+/* When the renderer process asks for the loaded modules, serve them to it */
+ipcMain.on("request-loaded-modules", (event, arg) => {
+  event.reply("serve-loaded-modules", {
+    details: loadedDetails,
+    plugins: loadedPlugins
+  });
+});
+
+/* The scrollbar was making a hassle with the Packery grid, luckily Electron has a feature for a scrollbar that is floating. */
+app.commandLine.appendSwitch("--enable-features", "OverlayScrollbar");
+app.on("ready", createLoadingWindow);
+
+/* Quit when all windows are closed. Copied from tutorial, but I think this is needed on macOS? */
 app.on("window-all-closed", function() {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== "darwin") {
     app.quit();
   }
 });
 
 app.on("activate", function() {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
-    createWindow();
+    createMainWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

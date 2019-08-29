@@ -4,7 +4,13 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "cross-env": "^5.2.0",
+    "draggabilly": "^2.2.0",
     "eslint": "^6.2.2",
+    "feedparser": "^2.2.9",
+    "jquery": "^3.4.1",
+    "jquery-bridget": "^2.0.1",
+    "packery": "^2.1.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
@@ -16,7 +22,6 @@
     "build": "rescripts build",
     "test": "rescripts test",
     "eject": "rescripts eject",
-    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron ./src/js/main/main.js"
     "electron-dev": "cross-env NODE_ENV=development electron ./src/js/main/main.js",
     "electron-prod": "cross-env NODE_ENV=production electron ./src/js/main/main.js"
   },

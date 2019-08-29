@@ -1,34 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
+* { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
+
+/* So bootstrap applies box-sixing: border-box; to *, *::before, *::after - which messes with how the padding is applied so here I change it as I don't need the box-sizing to make a grid */
+*, *::before, *::after {
+  box-sizing: initial;
+}
+
+body {
+  background-color: #FAFAFA;
+}
+
+
+h1, h2 {
+  font-weight: 200;
+}
+
+h3, h4 {
+  font-weight: 100;
+}
+
+.grid {
+  margin: 12px 0 0 12px;
+  padding: 0 0 12px 0;
+}
+
+.grid-sizer {
+  width: 50px;
+}
+
+.gutter-sizer {
+  width: 12px;
+}
+
 #window-decoration {
   -webkit-user-select: none;
   -webkit-app-region: drag;
   width: 100%;
-  padding: 0;
-  margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  cursor: grab;
 }
-#title {
-  line-height: 24px;
-  margin: 0 0 0 10px;
-  color: #666;
-  font-weight: 300;
-  float: left;
-  -webkit-app-region: no-drag;
-  text-decoration: none;
-}
-#window-decoration {
-    background-color:#999;
-}
-#buttons {
+#window-buttons {
   -webkit-app-region: no-drag;
   float: right;
   cursor: default;
 }
-#button-group {
+#window-buttons {
   float: right;
 }
-#button-group #close:hover {
+#window-buttons #close:hover {
   background-color: #f54242;
+}
+
+/* Copied from Packery documentation */
+.packery-drop-placeholder {
+  outline: 3px dashed #ededed;
+  outline-offset: -6px;
+  /* transition position changing */
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
 }

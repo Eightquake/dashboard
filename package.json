@@ -17,6 +17,8 @@
     "test": "rescripts test",
     "eject": "rescripts eject",
     "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron ./src/js/main/main.js"
+    "electron-dev": "cross-env NODE_ENV=development electron ./src/js/main/main.js",
+    "electron-prod": "cross-env NODE_ENV=production electron ./src/js/main/main.js"
   },
   "eslintConfig": {
     "extends": "react-app"

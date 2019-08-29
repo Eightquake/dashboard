@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 
-import NavBar from "./js/renderer/components/NavBar.jsx";
+/* Disabled for now as I am not using a frameless window */
+// import NavBar from "./js/renderer/components/NavBar.jsx";
 
 class App extends React.Component {
   render() {

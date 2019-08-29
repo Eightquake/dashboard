@@ -2,6 +2,9 @@ let registeredDetails,
   registeredPlugins,
   loadedDetails = new Map(),
   loadedPlugins = new Map();
+
+let addComponentToGrid;
+
 /* Asynchronously Register a handler for when the main process serves the loaded modules, and then send a request for them */
 ipcRenderer.on("serve-loaded-modules", (event, arg) => {
   registeredDetails = arg.details;
@@ -31,4 +34,8 @@ async function onloadReady() {
   
   fillGrid(loadedDetails, loadedPlugins, addComponentToGrid)
     .then(initGrid());
+}
+
+export default function registerAddComponentToGrid(theFunction) {
+  addComponentToGrid = theFunction;
 }

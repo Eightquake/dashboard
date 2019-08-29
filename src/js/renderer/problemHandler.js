@@ -11,35 +11,15 @@
 const EventEmitter = require("events");
 let problemHandler = new EventEmitter();
 
-/* Object to "translate" the event name to a icon */
-let icons = {
-  error: "fa-exclamation-triangle",
-  warn: "fa-exclamation-circle",
-  info: "fa-exclamation"
-};
+let addPopupToList;
 
 function createPopup(code, problem, string) {
-  /*let popupList = document.querySelector(".problem-popup");
-
-  let popup = document.createElement("li");
-  popup.innerHTML = `<div class="popup-header"><i class='fas ${
-    icons[code]
-  } popup-icon'></i><h3>${problem}:</h3></div><p>${string}</p>`;
-  popup.classList.add(`problem-${code}`, "problem-animation-run");
-
-  let exit = document.createElement("i");
-  exit.classList.add("fas", "fa-times", "popup-exit");
-  exit.onclick = function() {
-    popupList.removeChild(popup);
-  };
-
-  popup.appendChild(exit);
-  popupList.appendChild(popup);*/
   console.log(`${problem} | ${string}`);
+  addPopupToList({code, problem, string});
 }
 
 /* NODE_ENV shouldn't be defined unless it's running in production. While developing I want uncaught exceptions to go to the console, but when using the application I don't want that */
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV == "production") {
   process.on("uncaughtException", err => {
     // An Uncaught Exception is not good, let's inform the user something happened, as it wasn't handled anywhere else say that it's serious if it happens multiple times
     createPopup("error", "Critical Error", err);
@@ -52,7 +32,7 @@ if (process.env.NODE_ENV) {
  * @event error
  */
 problemHandler.on("error", errorString => {
-  createPopup("error", "Error", errorString);
+  createPopup("danger", "Error", errorString);
 });
 
 /**
@@ -61,7 +41,7 @@ problemHandler.on("error", errorString => {
  * @event warn
  */
 problemHandler.on("warn", warnString => {
-  createPopup("warn", "Warning", warnString);
+  createPopup("warning", "Warning", warnString);
 });
 
 /**
@@ -73,4 +53,7 @@ problemHandler.on("info", infoString => {
   createPopup("info", "Note", infoString);
 });
 
-module.exports = problemHandler;
+export default problemHandler;
+export function registerAddPopupToList(theFunction) {
+  addPopupToList = theFunction;
+}

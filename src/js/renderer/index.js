@@ -14,7 +14,7 @@
  * @category Renderer
  * @global
  */
-import problemHandler from "./problemHandler.js";
+import problemHandler, {registerAddPopupToList} from "./problemHandler.js";
 global.problem = problemHandler;
 
 import fillGrid from "./fillGrid.js";
@@ -53,11 +53,14 @@ async function onloadReady() {
       }
     );
   }
-  
-  fillGrid(loadedDetails, loadedPlugins, addComponentToGrid)
-    .then(initGrid());
+
+  fillGrid(loadedDetails, loadedPlugins, addComponentToGrid).then(initGrid());
 }
 
-export default function registerAddComponentToGrid(theFunction) {
+export function registerAddComponentToGrid(theFunction) {
   addComponentToGrid = theFunction;
+}
+
+export function forwardAddPopupToList(theFunction) {
+  registerAddPopupToList(theFunction);
 }

@@ -4,9 +4,13 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import App from "./App";
+import PopupList from "./js/renderer/components/PopupList.jsx";
 
 /* Import side effects of src/js/renderer/index.js, as no variables is needed here */
-import registerAddComponentToGrid from "./js/renderer";
+import {
+  registerAddComponentToGrid,
+  forwardAddPopupToList
+} from "./js/renderer";
 
 /* CSS items. First bootstrap, then Font Awesome icons, then my own CSS */
 import "bootstrap/dist/css/bootstrap.css";
@@ -23,9 +27,26 @@ function addComponentToGrid(gridObject) {
 }
 registerAddComponentToGrid(addComponentToGrid);
 
+let popupList = [];
+function addPopupToList(popupObject) {
+  popupList.push(popupObject);
+  ReactDOM.render(
+    <PopupList popups={popupList} />,
+    document.getElementsByClassName("popup-list")[0]
+  );
+}
+forwardAddPopupToList(addPopupToList);
+export function removePopupFromList(id) {
+  popupList.splice(id, 1);
+}
+
 ReactDOM.render(
   <App components={componentList} />,
   document.getElementById("root")
+);
+ReactDOM.render(
+  <PopupList popups={popupList} />,
+  document.getElementsByClassName("popup-list")[0]
 );
 
 // If you want your app to work offline and load faster, you can change

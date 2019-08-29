@@ -2,22 +2,22 @@ import React from "react";
 
 import Button from "./Button.jsx";
 
-const remote = require("electron").remote;
+const remote = window.remote;
 
 class NavBar extends React.Component {
   handleButtonClick = event => {
     const action = event.target.dataset.action,
-      window = remote.getCurrentWindow();
-    console.log(action, window);
+      thisWindow = remote.getCurrentWindow();
+    console.log(action, thisWindow);
     switch (action) {
       case "minimize":
-        window.minimize();
+        thisWindow.minimize();
         break;
       case "maximise":
-        !window.isMaximized() ? window.maximize() : window.unmaximize();
+        !thisWindow.isMaximized() ? thisWindow.maximize() : thisWindow.unmaximize();
         break;
       case "close":
-        window.close();
+        thisWindow.close();
         break;
       default:
         break;

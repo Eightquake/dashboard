@@ -9,13 +9,13 @@
 /* eslint-disable no-unused-vars */
 
 /* jQuery stuff in this block of code. */
-/* Quickfix I find online for getting jQuery to load correctly with Node integration. Without this jQuery sees it's a module and tries to do some stuff it shouldn't. */
+/* Quickfix I find online for getting jQuery to load correctly when imported as a module.*/
 import jquery from "jquery";
 import jQBridget from "jquery-bridget";
 import Packery from "packery"; /* Packery is using GNU GPL v3, and as long as my project is open-source, not commercial and also using GPL v3 it is okay for me to use it without paying for a license */
 import Draggabilly from "draggabilly" /* Dragabilly is using MIT License, so it is okay for me to use it here */
-/* I found this solution on a issue for Packery not working in Electron with node integration. I have never used bridget before, and don't quite understand jQuery plugins but hey, it worked! */
 
+/* I found this solution on a issue for Packery not working in Electron. I have never used bridget before, and don't quite understand jQuery plugins but hey, it worked! */
 window.$ = window.jQuery = jquery;
 $.bridget("packery", Packery);
 $.bridget("draggabilly", Draggabilly);

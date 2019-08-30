@@ -7,7 +7,6 @@
 
 /* Require Electron and extract app and BrowserWindow as variables */
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
-const config = require("electron-settings");
 const {
   default: installExtension,
   REACT_DEVELOPER_TOOLS
@@ -20,19 +19,6 @@ const initApp = require("./initApp.js");
 
 let loadedDetails = {},
   loadedPlugins = {};
-
-let askUserTrustsPlugin = pluginName => {
-  loadingWindow.webContents.send("ask-user-trusts-plugin", pluginName);
-};
-
-ipcMain.on("response-user-trusts-plugin", (event, arg) => {
-  if (arg.response) {
-    let configToSave = config.get("trusted-plugins");
-    configToSave[arg.file] = { file: arg.file, checksum: arg.checksum };
-
-    config.set("trusted-plugins", configToSave);
-  }
-});
 
 function createLoadingWindow() {
   loadingWindow = new BrowserWindow({
@@ -49,26 +35,14 @@ function createLoadingWindow() {
 
   loadingWindow.once("ready-to-show", () => {
     loadingWindow.show();
-    startLoading();
   });
-}
-
-function startLoading() {
-  let trustedPlugins = {};
-  if (config.has("trusted-plugins")) {
-    trustedPlugins = config.get("trusted-plugins");
-  } else {
-    config.set("trusted-plugins", trustedPlugins);
-  }
-
-  initApp(
-    loadedDetails,
-    loadedPlugins,
-    trustedPlugins,
-    askUserTrustsPlugin
-  ).then(() => {
-    /*   loadingWindow.close(); */
-    createMainWindow();
+  loadingWindow.webContents.once("did-finish-load", () => {
+    initApp(loadedDetails, loadedPlugins, loadingWindow.webContents).then(
+      () => {
+        loadingWindow.close();
+        createMainWindow();
+      }
+    );
   });
 }
 

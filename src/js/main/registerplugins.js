@@ -6,52 +6,91 @@
  * @author Victor Davidsson
  */
 
-const fs = require("fs"),
+const { ipcMain } = require("electron"),
+  config = require("electron-settings"),
+  fs = require("fs"),
   path = require("path"),
   sha256File = require("sha256-file"),
   readPath = path.join("src", "js", "modules", "plugins", "/"),
   jsRegex = /\.jsx$/i;
 
-function handler(loaded_plugins, trustedPlugins, askUserTrustsPlugin) {
+let trustedPlugins = {};
+
+ipcMain.on("user-plugin-trusts-answer", (event, arg) => {
+  let configToSave = config.get("trusted-plugins");
+  configToSave[arg.file] = { file: arg.file, checksum: arg.checksum };
+
+  config.set("trusted-plugins", configToSave);
+  trustedPlugins = configToSave;
+
+  alreadyAskedFiles.splice(alreadyAskedFiles.indexOf(arg.file + ".jsx"), 1);
+
+  if (alreadyAskedFiles.length === 0) {
+    readFolderForPlugins().then(() => {
+      handlerPromiseResolve();
+    })
+  }
+});
+
+let alreadyAskedFiles = [];
+function readFolderForPlugins() {
   return new Promise(function(resolve) {
     fs.readdir(readPath, function(err, files) {
       if (err) throw err;
       for (let i = 0; i < files.length; i++) {
         if (jsRegex.test(files[i])) {
-          let maybeTrustedPlugin = trustedPlugins[files[i]] || undefined;
+          let fileName = files[i].replace(jsRegex, "");
+          loadingWindowWC.send("start-loading-file", fileName);
+          let maybeTrustedPlugin = trustedPlugins[fileName] || undefined;
           let currentChecksum = sha256File(readPath + "/" + files[i]);
-          if (maybeTrustedPlugin) {
-            if (maybeTrustedPlugin.checksum === currentChecksum) {
-              loaded_plugins[files[i]] = {
-                type: "file",
-                location: files[i].replace(jsRegex, "")
-              };
-            } else {
-              /* TODO: Change this to be more secure during production */
-              if (process.env.NODE_ENV !== "development") {
-                askUserTrustsPlugin({
-                  message: "The file have changed since you last trusted it",
-                  file: files[i],
-                  checksum: currentChecksum
-                });
-              }
-              else {
-                loaded_plugins[files[i]] = {
-                  type: "file",
-                  location: files[i].replace(jsRegex, "")
-                };
-              }
-            }
+          if (
+            maybeTrustedPlugin &&
+            maybeTrustedPlugin.checksum === currentChecksum
+          ) {
+            loadedPlugins[files[i]] = {
+              type: "file",
+              location: fileName
+            };
+            loadingWindowWC.send("finish-loading-file", fileName);
           } else {
             /* The plugin is not set as trusted by the user! */
-            askUserTrustsPlugin({
-              message: "This file haven't been trusted before",
-              file: files[i],
+            loadingWindowWC.send("ask-user-trusts-file", {
+              message:
+                maybeTrustedPlugin &&
+                maybeTrustedPlugin.checksum !== currentChecksum
+                  ? "The file have changed since last trusted"
+                  : "This file haven't been trusted before",
+              file: fileName,
               checksum: currentChecksum
             });
+            alreadyAskedFiles.push(files[i]);
           }
         }
       }
+      if (
+        Object.keys(loadedPlugins).length > 0 &&
+        Object.keys(loadedPlugins).length === Object.keys(trustedPlugins).length
+      ) {
+        resolve();
+      }
+    });
+  });
+}
+
+let loadedPlugins, loadingWindowWC, handlerPromiseResolve;
+function handler(loaded_plugins, loadingWindowWCArg) {
+  loadedPlugins = loaded_plugins;
+  loadingWindowWC = loadingWindowWCArg;
+
+  if (config.has("trusted-plugins")) {
+    trustedPlugins = config.get("trusted-plugins");
+  } else {
+    config.set("trusted-plugins", trustedPlugins);
+  }
+
+  return new Promise(function(resolve) {
+    handlerPromiseResolve = resolve;
+    readFolderForPlugins().then(() => {
       resolve();
     });
   });

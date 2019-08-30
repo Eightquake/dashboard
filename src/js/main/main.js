@@ -7,29 +7,67 @@
 
 /* Require Electron and extract app and BrowserWindow as variables */
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
-const path = require("path");
-
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+const config = require("electron-settings");
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS
+} = require("electron-devtools-installer");
 let mainWindow, loadingWindow;
+
+const path = require("path");
 
 const initApp = require("./initApp.js");
 
 let loadedDetails = {},
   loadedPlugins = {};
 
+let askUserTrustsPlugin = pluginName => {
+  loadingWindow.webContents.send("ask-user-trusts-plugin", pluginName);
+};
+
+ipcMain.on("response-user-trusts-plugin", (event, arg) => {
+  if (arg.response) {
+    let configToSave = config.get("trusted-plugins");
+    configToSave[arg.file] = { file: arg.file, checksum: arg.checksum };
+
+    config.set("trusted-plugins", configToSave);
+  }
+});
+
 function createLoadingWindow() {
   loadingWindow = new BrowserWindow({
     width: 400,
     height: 400,
-    show: true
+    show: false,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
-  loadingWindow.loadFile("@app/public/loading.html");
-  startLoading();
+  loadingWindow.loadFile("../../../public/loading.html");
+  loadingWindow.webContents.openDevTools();
+
+  loadingWindow.once("ready-to-show", () => {
+    loadingWindow.show();
+    startLoading();
+  });
 }
 
 function startLoading() {
-  initApp(loadedDetails, loadedPlugins).then(() => {
-    loadingWindow.close();
+  let trustedPlugins = {};
+  if (config.has("trusted-plugins")) {
+    trustedPlugins = config.get("trusted-plugins");
+  } else {
+    config.set("trusted-plugins", trustedPlugins);
+  }
+
+  initApp(
+    loadedDetails,
+    loadedPlugins,
+    trustedPlugins,
+    askUserTrustsPlugin
+  ).then(() => {
+    /*   loadingWindow.close(); */
     createMainWindow();
   });
 }
@@ -40,8 +78,8 @@ function startLoading() {
  */
 function createMainWindow() {
   installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
+    .then(name => console.log(`Added Extension:  ${name}`))
+    .catch(err => console.log("An error occurred: ", err));
 
   mainWindow = new BrowserWindow({
     width: 1280,

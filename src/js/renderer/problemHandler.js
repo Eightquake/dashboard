@@ -15,11 +15,11 @@ let addPopupToList;
 
 function createPopup(code, problem, string) {
   console.log(`${problem} | ${string}`);
-  addPopupToList({code, problem, string});
+  addPopupToList({ code, problem, string });
 }
 
 /* NODE_ENV shouldn't be defined unless it's running in production. While developing I want uncaught exceptions to go to the console, but when using the application I don't want that */
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV !== "development") {
   process.on("uncaughtException", err => {
     // An Uncaught Exception is not good, let's inform the user something happened, as it wasn't handled anywhere else say that it's serious if it happens multiple times
     createPopup("error", "Critical Error", err);

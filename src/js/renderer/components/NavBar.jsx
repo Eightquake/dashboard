@@ -8,7 +8,6 @@ class NavBar extends React.Component {
   handleButtonClick = event => {
     const action = event.target.dataset.action,
       thisWindow = remote.getCurrentWindow();
-    console.log(action, thisWindow);
     switch (action) {
       case "minimize":
         thisWindow.minimize();

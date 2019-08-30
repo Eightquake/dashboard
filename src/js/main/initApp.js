@@ -10,11 +10,20 @@ const registerplugins = require("./registerplugins.js");
  * But first, we need to create the Maps for the loaded details and plugins. I guess these could be block-level variables instead of module-level but no harm in either.
  */
 
-function initDone(loaded_details, loaded_plugins) {
+function initDone(
+  loaded_details,
+  loaded_plugins,
+  trustedPlugins,
+  askUserTrustsPlugin
+) {
   return new Promise(function(resolve) {
     /* Both registerdetails and registerplugins start by returning a promise, then running their code */
     const detailsPromise = registerdetails(loaded_details);
-    const pluginsPromise = registerplugins(loaded_plugins);
+    const pluginsPromise = registerplugins(
+      loaded_plugins,
+      trustedPlugins,
+      askUserTrustsPlugin
+    );
     /* When both promises are resolved, meaning both have finished running their code we can start running all the other code that depends on the details and plugins */
     Promise.all([detailsPromise, pluginsPromise]).then(function() {
       resolve();

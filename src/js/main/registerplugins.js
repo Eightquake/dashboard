@@ -28,7 +28,7 @@ ipcMain.on("user-plugin-trusts-answer", (event, arg) => {
   if (alreadyAskedFiles.length === 0) {
     readFolderForPlugins().then(() => {
       handlerPromiseResolve();
-    })
+    });
   }
 });
 
@@ -59,7 +59,7 @@ function readFolderForPlugins() {
                 maybeTrustedPlugin &&
                 maybeTrustedPlugin.checksum !== currentChecksum
                   ? "The file have changed since last trusted"
-                  : "This file haven't been trusted before",
+                  : "The file haven't been trusted before",
               file: fileName,
               checksum: currentChecksum
             });

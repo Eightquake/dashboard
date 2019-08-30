@@ -9,6 +9,7 @@
 const { app, BrowserWindow, shell, ipcMain } = require("electron");
 const path = require("path");
 
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 let mainWindow, loadingWindow;
 
 const initApp = require("./initApp.js");
@@ -38,6 +39,10 @@ function startLoading() {
  * @private
  */
 function createMainWindow() {
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,

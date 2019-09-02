@@ -1,4 +1,3 @@
-/* eslint-disable no-undef, no-unused-vars, import/first */
 /**
  * The renderer process. It registers some global variables and on document load it starts the chain of functions that is needed to make the app work.
  * @category Renderer
@@ -7,6 +6,9 @@
  *
  */
 
+/* eslint-disable no-unused-vars, import/first */
+/* global ipcRenderer */
+
 /**
  * Error handler script, that any code can emit an event on. When an event error, warn, or info is emitted a popup will be shown to the user.
  * All scripts should use this to communicate with the user, instead of using the § or similar.
@@ -14,7 +16,7 @@
  * @category Renderer
  * @global
  */
-import problemHandler, {registerAddPopupToList} from "./problemHandler.js";
+import problemHandler, { registerAddPopupToList } from "./problemHandler.js";
 global.problem = problemHandler;
 
 import fillGrid from "./fillGrid.js";

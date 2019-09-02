@@ -14,8 +14,8 @@ import {
 
 /* CSS items. First bootstrap, then Font Awesome icons, then my own CSS */
 import "bootstrap/dist/css/bootstrap.css";
-import "./resources/renderer/fa-all.min.css";
-import "./resources/renderer/maintheme.css";
+import "../public/resources/css/fa-all.min.css";
+import "../public/resources/css/maintheme.css";
 
 let componentList = [];
 function addComponentToGrid(gridObject) {

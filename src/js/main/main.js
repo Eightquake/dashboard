@@ -27,11 +27,11 @@ function createLoadingWindow() {
     show: false,
     frame: false,
     webPreferences: {
-      nodeIntegration: true
+      preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: false
     }
   });
   loadingWindow.loadFile("../../../public/loading.html");
-  loadingWindow.webContents.openDevTools();
 
   loadingWindow.once("ready-to-show", () => {
     loadingWindow.show();

@@ -1,12 +1,20 @@
 /* Renderer process for Loading window */
-const { ipcRenderer } = require("electron");
+
+/* global ipcRenderer, remote */
+
+window.onload = function() {
+  document.querySelector("button#close-button").onclick = function() {
+    let thisWindow = remote.getCurrentWindow();
+    thisWindow.close();
+  };
+};
 
 ipcRenderer.on("start-loading-file", (event, arg) => {
   /*  document.querySelector(".loading-progress").value = 0; */
   let element = document.createElement("li");
   element.id = arg;
   element.className = "card";
-  element.innerHTML = `<div class="card-header"><h4 class="mb-0">File: ${arg}.jsx</h4></div><div class="card-body"><p id="${arg}" class="loading-text">Loading...</p></div>`;
+  element.innerHTML = `<div class="card-header"><h4 class="mb-0">File: ${arg}.jsx</h4></div><div id="${arg}" class="card-body"><p id="${arg}" class="loading-text">Loading...</p></div>`;
   document.querySelector("ul").appendChild(element);
 });
 
@@ -17,12 +25,12 @@ ipcRenderer.on("finish-loading-file", (event, arg) => {
 ipcRenderer.on("ask-user-trusts-file", (event, arg) => {
   document.querySelector(
     `p#${arg.file}.loading-text`
-  ).innerHTML = `${arg.message}<hr>`;
+  ).innerHTML = `${arg.message}.<hr>`;
   let footer = document.createElement("div");
-  footer.className = "";
-  footer.innerHTML = "Do you trust this plugin?"
+  footer.className = `footer`;
+  footer.innerHTML = "<p class='float-left mb-0'>Trust and load plugin?</p>";
   let confirm = document.createElement("button");
-  confirm.className = "btn btn-secondary"
+  confirm.className = "btn btn-secondary float-right";
   confirm.onclick = function() {
     document
       .querySelector(`ul`)
@@ -34,5 +42,5 @@ ipcRenderer.on("ask-user-trusts-file", (event, arg) => {
   };
   confirm.innerText = "Yes";
   footer.appendChild(confirm);
-  document.querySelector(`p#${arg.file}.loading-text`).appendChild(footer);
+  document.querySelector(`div#${arg.file}.card-body`).appendChild(footer);
 });

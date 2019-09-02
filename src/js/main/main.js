@@ -11,6 +11,7 @@ const {
   default: installExtension,
   REACT_DEVELOPER_TOOLS
 } = require("electron-devtools-installer");
+
 let mainWindow, loadingWindow;
 
 const path = require("path");
@@ -31,7 +32,8 @@ function createLoadingWindow() {
       nodeIntegration: false
     }
   });
-  loadingWindow.loadFile("../../../public/loading.html");
+
+  loadingWindow.loadFile(path.join("..", "..", "..", "public", "loading.html"));
 
   loadingWindow.once("ready-to-show", () => {
     loadingWindow.show();
@@ -39,8 +41,8 @@ function createLoadingWindow() {
   loadingWindow.webContents.once("did-finish-load", () => {
     initApp(loadedDetails, loadedPlugins, loadingWindow.webContents).then(
       () => {
-        loadingWindow.close();
-        createMainWindow();
+            createMainWindow();
+            loadingWindow.close();
       }
     );
   });
@@ -70,7 +72,7 @@ function createMainWindow() {
   let loadURL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "@app/build/index.html";
+            : path.join("..", "..", "..", "build", "index.html");
   mainWindow.loadURL(loadURL);
 
   /* Open the DevTools. */
@@ -80,11 +82,11 @@ function createMainWindow() {
   mainWindow.webContents.on("will-navigate", handleNewNavigation);
   mainWindow.webContents.on("new-window", handleNewNavigation);
 
-  mainWindow.on("closed", function() {
+  mainWindow.on("closed", function () {
     mainWindow = null;
   });
   mainWindow.once("ready-to-show", () => {
-    /* Wait until everything is ready to show. Just makes it neater. */
+  /* Wait until everything is ready to show. Just makes it neater. */
     mainWindow.show();
   });
 }

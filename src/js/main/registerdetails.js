@@ -8,7 +8,7 @@
 
 const fs = require("fs"),
   path = require("path"),
-  readPath = path.join("src", "js", "modules", "details", "/"),
+  readPath = path.join(__dirname, "..", "modules", "details", "/"),
   jsonRegex = /\.json$/i;
 
 function handler(loaded_details) {

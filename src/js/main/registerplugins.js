@@ -12,7 +12,7 @@ const { ipcMain } = require("electron"),
   fs = require("fs"),
   path = require("path"),
   sha256File = require("sha256-file"),
-  readPath = path.join("src", "js", "modules", "plugins", "/"),
+    readPath = path.join(__dirname, "..", "modules", "plugins", "/")
   jsRegex = /\.jsx$/i;
 
 let trustedPlugins = {},
@@ -54,8 +54,8 @@ function readFolderForPlugins() {
           loadingWindowWC.send("start-loading-file", fileName);
           /* Set maybeTrustedPlugin to the trusted plugin if it exists or undefined if not */
           let maybeTrustedPlugin = trustedPlugins[fileName] || undefined;
-          /* Calculate the currentChecksum of the file that exists currently */
-          let currentChecksum = sha256File(readPath + "/" + files[i]);
+        /* Calculate the currentChecksum of the file that exists currently */
+            let currentChecksum = sha256File(path.join(readPath, files[i]));
           if (
             maybeTrustedPlugin &&
             maybeTrustedPlugin.checksum === currentChecksum

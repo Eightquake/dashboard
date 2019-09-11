@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Loading...</title>
+    <script src="../src/js/renderer/loadingWindow/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <style>
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #loading-blocked {
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+      }
+
+      h4 {
+        font-size: 18px;
+      }
+
+      div.footer p {
+        line-height:2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header" id="loading-blocked">
+        <h3 class="mb-0 float-left">Loading blocked.</h3>
+        <button id="close-button" type="button" class="close float-right">X</button>
+      </div>
+      <div class="card-body">
+        <ul></ul>
+      </div>
+    </div>
+  </body>
+</html>
